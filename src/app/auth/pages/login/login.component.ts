@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -8,29 +8,37 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  loginForm: FormGroup = this.fb.group({
-    username: ['juan.perez', [Validators.required]],
-    password: ['123456', [Validators.required]],
-  });
+  // loginForm: FormGroup = this.fb.group({
+  //   username: ['juan.perez', [Validators.required]],
+  //   password: ['123456', [Validators.required]],
+  // });
+
+  controls = {
+    username: this.fb.control<string>('juan.perez', [Validators.required,],),
+    password: this.fb.control<string>('123456', [Validators.required])
+  }
+
+  loginForm: FormGroup<{
+    username: FormControl<string>,
+    password: FormControl<string>
+  }> = this.fb.group(this.controls);
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: NonNullableFormBuilder
   ) { }
 
-  ngOnInit(): void {
-  }
 
   login() {
-    const {username, password} = this.loginForm.value
-    this.auth.login(username, password)
+    const { username, password } = this.loginForm.value;
+    this.auth.login(username!, password!)
       .subscribe(resp => {
-        console.log('logged')
+        console.log('logged');
       }
-      )
+      );
   }
 
 }

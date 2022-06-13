@@ -2,8 +2,7 @@
 
 <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
   
-<!-- [formGroup]="loginForm" (ngSubmit)="login()" -->
-  <label for="username">Nombre de usuario</label>
+  <label >Nombre de usuario</label>
   <input type="text" id="username" formControlName="username">
   <label for="password">Contraseña</label>
   <input type="password" id="password" formControlName="password">
