@@ -1,20 +1,16 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormValidatorService } from 'src/app/core/services/form-validator.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss']
 })
-export class LoginComponent {
-
-  // loginForm: FormGroup = this.fb.group({
-  //   username: ['juan.perez', [Validators.required]],
-  //   password: ['123456', [Validators.required]],
-  // });
+export class LoginFormComponent {
 
   controls = {
     username: this.fb.control<string>('juan.perez', [Validators.required,],),
