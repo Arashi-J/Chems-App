@@ -13,11 +13,30 @@ export class LoginPageGuard implements CanActivate, CanLoad {
     private router: Router) { }
 
   canActivate(): Observable<boolean> | boolean {
-    return true;
+    this.auth.not_active_token()
+    return true
+
+    // return this.auth.active_token()
+    //   .pipe(
+    //     tap(valid => {
+    //       if (!valid) {
+    //         this.router.navigateByUrl('/main');
+    //       }
+    //     })
+    //   );
+
   }
 
   canLoad(): Observable<boolean> | boolean {
-    return true;
+    return true
+    // return this.auth.active_token()
+    //   .pipe(
+    //     tap(valid => {
+    //       if (!valid) {
+    //         this.router.navigateByUrl('/main');
+    //       }
+    //     })
+    //   );
   }
 
 

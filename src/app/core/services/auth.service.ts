@@ -16,6 +16,8 @@ export class AuthService {
     return this._activeUser;
   }
 
+  private _activeToken!: boolean;
+
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
@@ -27,57 +29,53 @@ export class AuthService {
 
     return this.http.post<LoginResponse>(url, formData)
       .pipe(
-        tap(resp => {
-          console.log(resp);
-          if (resp.access_token) {
-            localStorage.setItem('access_token', resp.access_token);
+        tap(resp => localStorage.setItem('access_token', resp.access_token))
+      );
+  }
+
+  validate_token(): Observable<boolean> {
+    const url = `${ this.baseUrl }/users/active_user/`;
+    const token = localStorage.getItem('access_token');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${ token }` || '');
+
+    return this.http.get<ActiveUser>(url, { headers })
+      .pipe(
+        map(resp => {
+          if (resp.username) {
+            this._activeUser = resp;
+            return true;
+          }
+          else {
+            return false;
           }
         })
       );
   }
 
-  validate_token(): Observable<boolean> | boolean {
+  not_active_token(): boolean {
     const url = `${ this.baseUrl }/users/active_user/`;
     const token = localStorage.getItem('access_token');
-    let result!: boolean;
 
 
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${ token }` || '');
 
-
-    this.http.get<ActiveUser>(url, { headers })
-      .subscribe(resp => {
-        console.log(resp);
-        if (resp.username) {
-          this._activeUser = resp;
-          result = true;
-        } else {
-          result = false;
-        }
-
-
-      });
-
-
-
-    return result;
-
-
-    // return this.http.get<ActiveUser>(url, { headers })
-    //   .pipe(
-    //     map(resp => {
-    //       if (resp.username) {
-    //         this._activeUser = resp;
-    //         return true;
-    //       }
-    //       else {
-    //         return false;
-    //       }
-    //     })
-    //   );
+    this.http.get<any>(url, { headers })
+      .pipe(
+        tap({
+          next: resp => {
+            this._activeToken = true;
+          },
+          error: error => {
+            this._activeToken = false;
+          }
+        })
+      );
+    console.log(this._activeToken)
+    return this._activeToken;
   }
-
   logout() {
     localStorage.clear();
   }

@@ -14,29 +14,25 @@ export class AuthGuard implements CanActivate, CanLoad {
 
 
   canActivate(): Observable<boolean> | boolean {
-    // return this.auth.validate_token()
-    //   .pipe(
-    //     tap(valid => {
-    //       if (!valid) {
-    //         this.router.navigateByUrl('/login');
-    //       }
-    //     })
-    //   );
-    const result = this.auth.validate_token()
-
-    return result;
-
+    return this.auth.validate_token()
+      .pipe(
+        tap(valid => {
+          if (!valid) {
+            this.router.navigateByUrl('/login');
+          }
+        })
+      );
   }
+
   canLoad(): Observable<boolean> | boolean {
-    // return this.auth.validate_token()
-    //   .pipe(
-    //     tap(valid => {
-    //       if (!valid) {
-    //         this.router.navigateByUrl('/login');
-    //       }
-    //     })
-    //   );
-
-    return this.auth.validate_token();
+    return this.auth.validate_token()
+      .pipe(
+        tap(valid => {
+          if (!valid) {
+            this.router.navigateByUrl('/login');
+          }
+        })
+      );
   }
+  
 }
