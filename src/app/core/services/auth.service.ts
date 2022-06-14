@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap, map, of } from 'rxjs';
+import { Observable, tap, map, of, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ActiveUser, LoginResponse } from '../interfaces/interfaces';
 
@@ -15,8 +15,6 @@ export class AuthService {
   get activeUser() {
     return this._activeUser;
   }
-
-  private _activeToken!: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -47,35 +45,28 @@ export class AuthService {
             this._activeUser = resp;
             return true;
           }
-          else {
-            return false;
-          }
+          else { return false; }
         })
       );
   }
 
-  not_active_token(): boolean {
+  not_active_token(): Observable<boolean> {
     const url = `${ this.baseUrl }/users/active_user/`;
     const token = localStorage.getItem('access_token');
-
 
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${ token }` || '');
 
-    this.http.get<any>(url, { headers })
+    return this.http.get<ActiveUser>(url, { headers })
       .pipe(
-        tap({
-          next: resp => {
-            this._activeToken = true;
-          },
-          error: error => {
-            this._activeToken = false;
-          }
-        })
+        map(resp => {
+          if (resp.username != undefined ) { return false; }
+          else throw 'error'
+        }), catchError(err => of(true))
       );
-    console.log(this._activeToken)
-    return this._activeToken;
   }
+
+
   logout() {
     localStorage.clear();
   }
