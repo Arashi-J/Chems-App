@@ -1,10 +1,22 @@
-<h1>Iniciar Sesión</h1>
+<p class="col-span-1 text-5xl font-black text-center">
+  Chems App</p>
+<form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()"
+      class="grid grid-cols-1 gap-2 justify-items-center border-2 border-black rounded-2xl px-20 py-8">
+  <p class="col-span-1 font-bold text-2xl">
+    Iniciar Sesión</p>
 
-<form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
-  
-  <label >Nombre de usuario</label>
-  <input type="text" id="username" formControlName="username">
-  <label for="password">Contraseña</label>
-  <input type="password" id="password" formControlName="password">
-  <button type="submit" [disabled]="!formValidator()">Ingresar</button>
+  <mat-form-field appearance="outline" class="col-span-1">
+    <mat-label>Nombre de usuario</mat-label>
+    <input matInput type="text" formControlName="username">
+    <mat-error>Ingrese un nombre de usuario</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-span-1">
+    <mat-label for="password">Contraseña</mat-label>
+    <input matInput type="password" formControlName="password">
+    <mat-error>Ingrese una contraseña válida</mat-error>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!formValidator()"
+          mat-flat-button color="primary" class="col-span-1">Ingresar</button>
 </form>
