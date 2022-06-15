@@ -1,13 +1,24 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+<mat-toolbar color="primary" class="flex flex-row">
+
+    <button mat-icon-button class="basis-1/24">
         <mat-icon>menu</mat-icon>
     </button>
-    <span>Chems App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
+    
+    <div class="text-start basis-full">
+        <span class="font-bold italic text-4xl uppercase cursor-pointer">Chems-App</span>
+    </div>
+
+    
+    <button mat-button *ngFor="let item of menuItems" class="basis-3/12">
+        <mat-icon class="mr-1">{{item.icon}}</mat-icon>
+        <span>{{item.item}}</span>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
+    
+    <span class="basis-3/12 text-end mx-2 font-semibold">{{activeUser.firstname + ' ' + activeUser.lastname}}</span>
+    
+    <button mat-button (click)="logout()" class="basis-4/12">
+        <mat-icon class="mr-1">logout</mat-icon>
+        <span>Cerrar Sesión</span>
     </button>
+
 </mat-toolbar>

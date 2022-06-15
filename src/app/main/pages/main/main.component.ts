@@ -9,19 +9,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class MainComponent {
 
-  get activeUser() {
-    return this.auth.activeUser;
-  }
 
-  constructor(
-    private router: Router,
-    private auth: AuthService) { }
-
-  logout() {
-
-    this.auth.logout();
-    this.router.navigateByUrl('/login');
-
-  }
 
 }
