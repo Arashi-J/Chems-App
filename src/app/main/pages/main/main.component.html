@@ -5,16 +5,20 @@
     <mat-sidenav-container>
 
         <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-48">
-            <div>Elemento 1</div>
-            <div>Elemento 2</div>
-            <div>Elemento 3</div>
-            <div>Elemento 4</div>
+
+            <div routerLink="">dashboard</div>
+            <div routerLink="users">Elemento 2</div>
+            <div routerLink="areas">Elemento 3</div>
+            
+            <div routerLink="chemicals">Elemento 4</div>
         </mat-sidenav>
 
         <mat-sidenav-content class="h-full">
-            <div class="">
-                Main Component
-            </div>
+
+            <div class="">Main Component</div>
+
+            <router-outlet></router-outlet>
+
         </mat-sidenav-content>
 
     </mat-sidenav-container>

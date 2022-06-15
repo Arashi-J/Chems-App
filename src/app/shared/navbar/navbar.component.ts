@@ -15,9 +15,9 @@ export class NavbarComponent {
   }
 
   menuItems = [
-    { item: 'Químicos', link: '', icon: 'science', roles: [''] },
-    { item: 'Areas', link: '', icon: 'badge', roles: [''] },
-    { item: 'Usuarios', link: '', icon: 'person', roles: [''] },
+    { item: 'Químicos', link: '/main/chemicals', icon: 'science', roles: [''] },
+    { item: 'Areas', link: '/main/areas', icon: 'badge', roles: [''] },
+    { item: 'Usuarios', link: '/main/users', icon: 'person', roles: [''] },
   ];
 
   @Output() onMenuButton = new EventEmitter<void>()
@@ -28,6 +28,10 @@ export class NavbarComponent {
 
   sidenavToggle (){
     this.onMenuButton.emit()
+  }
+
+  navigateTo(url: string = '/main'){
+    this.router.navigateByUrl(url)
   }
 
   logout() {

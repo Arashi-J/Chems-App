@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
+import { Component } from '@angular/core';
+import { MatDrawerMode } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/services/auth.service';
