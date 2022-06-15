@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -20,9 +20,15 @@ export class NavbarComponent {
     { item: 'Usuarios', link: '', icon: 'person', roles: [''] },
   ];
 
+  @Output() onMenuButton = new EventEmitter<void>()
+
   constructor(
     private router: Router,
     private auth: AuthService) { }
+
+  sidenavToggle (){
+    this.onMenuButton.emit()
+  }
 
   logout() {
 

@@ -1,1 +1,22 @@
-<app-navbar></app-navbar>
+<div class="h-screen">
+
+    <app-navbar class="" (onMenuButton)="sidenav.toggle()"></app-navbar>
+
+    <mat-sidenav-container>
+
+        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-48">
+            <div>Elemento 1</div>
+            <div>Elemento 2</div>
+            <div>Elemento 3</div>
+            <div>Elemento 4</div>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="h-full">
+            <div class="">
+                Main Component
+            </div>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

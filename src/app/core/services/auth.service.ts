@@ -41,7 +41,7 @@ export class AuthService {
     return this.http.get<ActiveUser>(url, { headers })
       .pipe(
         map(resp => {
-          if (resp.username) {
+          if (!!resp.username) {
             this._activeUser = resp;
             return true;
           }
@@ -60,7 +60,7 @@ export class AuthService {
     return this.http.get<ActiveUser>(url, { headers })
       .pipe(
         map(resp => {
-          if (resp.username != undefined ) { return false; }
+          if (!!resp.username ) { return false; }
           else throw 'error'
         }), catchError(err => of(true))
       );
