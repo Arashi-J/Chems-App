@@ -13,7 +13,7 @@
     <button mat-button
             *ngFor="let item of menuItems"
             class="basis-3/12" (click)="navigateTo(item.link)"
-            [ngClass]="{'font-semibold bg-indigo-900': '/main/' + url === item.link}">
+            [ngClass]="{'bg-indigo-900': '/main/' + url === item.link}">
 
         <mat-icon class="mr-1">{{item.icon}}</mat-icon>
 

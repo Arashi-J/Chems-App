@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from 'src/app/material.module'
 
 import { SharedModule } from '../shared/shared.module';
 

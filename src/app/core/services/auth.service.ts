@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap, map, of, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ActiveUser, LoginResponse } from '../interfaces/interfaces';
+import { User, LoginResponse } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthService {
 
   baseUrl: string = environment.baseUrl;
 
-  private _activeUser!: ActiveUser;
+  private _activeUser!: User;
   get activeUser() {
     return this._activeUser;
   }
@@ -38,7 +38,7 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${ token }` || '');
 
-    return this.http.get<ActiveUser>(url, { headers })
+    return this.http.get<User>(url, { headers })
       .pipe(
         map(resp => {
           if (!!resp.username) {
@@ -57,7 +57,7 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${ token }` || '');
 
-    return this.http.get<ActiveUser>(url, { headers })
+    return this.http.get<User>(url, { headers })
       .pipe(
         map(resp => {
           if (!!resp.username ) { return false; }

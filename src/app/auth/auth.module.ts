@@ -6,7 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from 'src/app/material.module'
 
 
 @NgModule({
