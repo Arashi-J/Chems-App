@@ -5,19 +5,27 @@
     </button>
 
     <div class="text-start basis-full">
-        <span class="font-bold italic text-4xl uppercase cursor-pointer" (click)="navigateTo()">
-            Chems-App</span>
+        <span class="font-bold italic text-4xl uppercase cursor-pointer"
+              (click)="navigateTo()"> Chems-App</span>
     </div>
 
 
-    <button mat-button *ngFor="let item of menuItems" class="basis-3/12" (click)="navigateTo(item.link)">
+    <button mat-button
+            *ngFor="let item of menuItems"
+            class="basis-3/12" (click)="navigateTo(item.link)"
+            [ngClass]="{'font-semibold bg-indigo-900': '/main/' + url === item.link}">
+
         <mat-icon class="mr-1">{{item.icon}}</mat-icon>
-        <span>{{item.item}}</span>
+
+        <span>{{item.item | titlecase}}</span>
+
     </button>
 
-    <span class="basis-3/12 text-end mx-2 font-semibold">{{activeUser.firstname + ' ' + activeUser.lastname}}</span>
-    <span class="text-sm">{{url}}</span>
-    <button mat-button (click)="logout()" class="basis-4/12">
+    <span class="basis-3/12 text-end mx-2">
+        {{activeUser.firstname + ' ' + activeUser.lastname}}
+    </span>
+
+    <button mat-button (click)="logout()" class="basis-4/12 w-28">
         <mat-icon class="mr-1">logout</mat-icon>
         <span>Cerrar Sesión</span>
     </button>

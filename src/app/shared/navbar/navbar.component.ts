@@ -15,9 +15,9 @@ export class NavbarComponent {
   }
 
   menuItems = [
-    { item: 'Químicos', link: '/main/chemicals', icon: 'science', roles: [''] },
-    { item: 'Areas', link: '/main/areas', icon: 'badge', roles: [''] },
-    { item: 'Usuarios', link: '/main/users', icon: 'person', roles: [''] },
+    { item: 'químicos', link: '/main/chemicals', icon: 'science', roles: [''] },
+    { item: 'áreas', link: '/main/areas', icon: 'badge', roles: [''] },
+    { item: 'usuarios', link: '/main/users', icon: 'person', roles: [''] },
   ];
 
   @Input() url!: string

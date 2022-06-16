@@ -1,28 +1,33 @@
 <div class="h-screen">
 
+    <!--Navbar-->
+
     <app-navbar class="" (onMenuButton)="sidenav.toggle()" [url]="activeUrl"></app-navbar>
+
+    <!--Sidenav-->
 
     <mat-sidenav-container class="h-screen">
 
-        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-56 bg-slate-100">
-
-            <div *ngFor="let menu of sidenavItems">
-
-                <a mat-button *ngFor="let item of menu" routerLink="{{item.link}}"
-                   class="cursor-pointer">
+        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-36 bg-slate-100">
+            
+            <div *ngFor="let item of sidenavItems">
+                <a mat-button routerLink="{{item.link}}"
+                   class="cursor-pointer w-full">
 
                     <mat-icon routerLinkActive="font-black text-indigo-900"
                               [routerLinkActiveOptions]="{exact: true}"
                               class="mr-1">{{item.icon}}</mat-icon>
-
+                    <br>
                     <span routerLinkActive="font-black text-indigo-900"
                           [routerLinkActiveOptions]="{exact: true}"
-                          class="">{{item.item}}</span>
-
+                          class="leading-3 whitespace-normal">{{item.item | titlecase}}</span>
                 </a>
-            </div>
 
+            </div>
+            
         </mat-sidenav>
+
+        <!--Main content-->
 
         <mat-sidenav-content class="">
 
