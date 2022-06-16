@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -20,19 +20,23 @@ export class NavbarComponent {
     { item: 'Usuarios', link: '/main/users', icon: 'person', roles: [''] },
   ];
 
+  @Input() url!: string
+
   @Output() onMenuButton = new EventEmitter<void>();
+
+
 
   constructor(
     private router: Router,
     private auth: AuthService) { }
+
 
   sidenavToggle() {
     this.onMenuButton.emit();
   }
 
   navigateTo(url: string = '/main') {
-    this.router.navigateByUrl(url);
-    console.log(this.router.url)
+    this.router.navigateByUrl(url)
   }
 
   logout() {
