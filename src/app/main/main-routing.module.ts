@@ -27,7 +27,7 @@ const routes: Routes = [
         children: [
           {path: '', component: AreasListComponent},
           {path: 'new', component: AreasCreationComponent},
-          {path: 'area/:id', component: AreasDetailsComponent},
+          {path: ':id', component: AreasDetailsComponent},
         ]
       },
       {
@@ -35,7 +35,7 @@ const routes: Routes = [
         children: [
           {path: '', component: ChemicalsListComponent},
           {path: 'new', component: ChemicalsCreationComponent},
-          {path: 'chemical/:id', component: ChemicalsDetailsComponent},
+          {path: ':id', component: ChemicalsDetailsComponent},
         ]
       },
       {
@@ -43,7 +43,7 @@ const routes: Routes = [
         children: [
           { path: '', component: UsersListComponent },
           { path: 'new', component: UsersCreationComponent },
-          { path: 'user/:id', component: UsersDetailsComponent },
+          { path: ':id', component: UsersDetailsComponent },
         ]
       },
       { path: '', redirectTo: '', pathMatch: 'full' }

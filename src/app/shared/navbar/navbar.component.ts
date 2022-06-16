@@ -20,18 +20,19 @@ export class NavbarComponent {
     { item: 'Usuarios', link: '/main/users', icon: 'person', roles: [''] },
   ];
 
-  @Output() onMenuButton = new EventEmitter<void>()
+  @Output() onMenuButton = new EventEmitter<void>();
 
   constructor(
     private router: Router,
     private auth: AuthService) { }
 
-  sidenavToggle (){
-    this.onMenuButton.emit()
+  sidenavToggle() {
+    this.onMenuButton.emit();
   }
 
-  navigateTo(url: string = '/main'){
-    this.router.navigateByUrl(url)
+  navigateTo(url: string = '/main') {
+    this.router.navigateByUrl(url);
+    console.log(this.router.url)
   }
 
   logout() {

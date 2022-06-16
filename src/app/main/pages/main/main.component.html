@@ -4,17 +4,24 @@
 
     <mat-sidenav-container class="h-screen">
 
-        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-48">
+        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-56 bg-slate-100">
 
-            <div routerLink="">dashboard</div>
-            <div routerLink="users">Elemento 2</div>
-            <div routerLink="areas">Elemento 3</div>
+            <div *ngFor="let menu of sidenavItems">
 
-            <a *ngFor="let item of sidenavItems[0]">
-                <mat-icon>{{item}}</mat-icon>
-            </a>
+                <a mat-button *ngFor="let item of menu" routerLink="{{item.link}}"
+                   class="cursor-pointer">
 
-            <div routerLink="chemicals">Elemento 4</div>
+                    <mat-icon routerLinkActive="font-black text-indigo-900"
+                              [routerLinkActiveOptions]="{exact: true}"
+                              class="mr-1">{{item.icon}}</mat-icon>
+
+                    <span routerLinkActive="font-black text-indigo-900"
+                          [routerLinkActiveOptions]="{exact: true}"
+                          class="">{{item.item}}</span>
+
+                </a>
+            </div>
+
         </mat-sidenav>
 
         <mat-sidenav-content class="">

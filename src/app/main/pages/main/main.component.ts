@@ -13,23 +13,26 @@ export class MainComponent {
 
   sidenavMode: MatDrawerMode = 'side';
 
-  sidenavItems = [
-    [
-      [
-        { item: 'Añadir Sustancia Química', link: '/main/chemicals', icon: 'add', roles: [''] },
-        { item: 'Lista Sustancias Químicas', link: '/main/areas', icon: 'list', roles: [''] },
-      ],
-      [
-        { item: 'Añadir', link: '/main/chemicals', icon: 'add', roles: [''] },
-        { item: 'Lista', link: '/main/areas', icon: 'list', roles: [''] },
-      ],
-      [
-        { item: 'Añadir', link: '/main/chemicals', icon: 'add', roles: [''] },
-        { item: 'Lista', link: '/main/areas', icon: 'list', roles: [''] },
-      ],
-    ]
+  sidenavAreasItems = [
+    { item: 'Añadir Área', link: 'areas/new', icon: 'add', roles: [''] },
+    { item: 'Ver Áreas', link: 'areas', icon: 'list', roles: [''] },
   ];
 
+  sidenavChemicalsItems = [
+    { item: 'Añadir Sustancia Química', link: 'chemicals/new', icon: 'add', roles: [''] },
+    { item: 'Ver Sustancias Químicas', link: 'chemicals', icon: 'list', roles: [''] },
+  ];
+
+  sidenavUserssItems = [
+    { item: 'Añadir Usuario', link: 'users/new', icon: 'add', roles: [''] },
+    { item: 'Ver Usuarios', link: 'users', icon: 'list', roles: [''] },
+  ];
+
+  sidenavItems = [this.sidenavAreasItems, this.sidenavChemicalsItems, this.sidenavUserssItems]
+
+  // navigateTo(url: string = '/main'){
+  //   this.router.navigateByUrl(url)
+  // }
 
 
 }
