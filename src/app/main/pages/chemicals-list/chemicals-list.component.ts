@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { DataFetchService } from 'src/app/core/services/data-fetch.service';
-import { Chemical } from 'src/app/core/interfaces/interfaces';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+
+import { Chemical } from 'src/app/core/interfaces/interfaces';
+import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 
 @Component({
   selector: 'app-chemicals-list',
   templateUrl: './chemicals-list.component.html',
   styleUrls: ['./chemicals-list.component.scss']
 })
-export class ChemicalsListComponent implements OnInit {
+export class ChemicalsListComponent implements OnInit, AfterViewInit {
 
-  chemicals!: Chemical[];
+
 
   columns = [
     {
@@ -43,22 +47,35 @@ export class ChemicalsListComponent implements OnInit {
 
   displayedColumns = this.columns.map(c => c.columnDef);
 
-  dataSource = new MatTableDataSource(this.chemicals);
+  dataSource!: MatTableDataSource<Chemical>;
+
+  @ViewChild('input') inputFilter!: ElementRef<HTMLInputElement>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private data: DataFetchService) { }
 
   ngOnInit(): void {
     this.data.get_items<Chemical>('chemicals')
-      .subscribe(resp => this.chemicals = resp);
+      .subscribe(resp => {
+        this.dataSource = new MatTableDataSource(resp);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
   }
 
+  ngAfterViewInit(): void {
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log(filterValue)
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  applyFilter() {
+    this.dataSource.filter = this.inputFilter.nativeElement.value.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
 
 }

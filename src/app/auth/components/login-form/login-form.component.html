@@ -1,22 +1,22 @@
-<p class="col-span-1 text-5xl font-black text-center uppercase italic">
+<p class="col-span-1 text-5xl font-black text-center uppercase italic text-indigo-900">
   Chems-App</p>
 <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()"
-      class="grid grid-cols-1 gap-2 justify-items-center border-2 border-black rounded-2xl px-20 py-8">
-  <p class="col-span-1 font-bold text-2xl">
+      class="grid grid-cols-1 gap-2 justify-items-center border-y-2 border-indigo-900 px-7 py-8 bg-gray-50">
+  <p class="col-span-1 font-bold text-3xl text-indigo-900">
     Iniciar Sesión</p>
 
-  <mat-form-field appearance="outline" class="col-span-1">
+  <mat-form-field appearance="standard" class="col-span-1 text-2xl w-80">
     <mat-label>Nombre de usuario</mat-label>
     <input matInput type="text" formControlName="username">
     <mat-error>Ingrese un nombre de usuario</mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="col-span-1">
+  <mat-form-field appearance="standard" class="col-span-1 text-2xl w-80">
     <mat-label for="password">Contraseña</mat-label>
     <input matInput type="password" formControlName="password">
     <mat-error>Ingrese una contraseña válida</mat-error>
   </mat-form-field>
 
   <button type="submit" [disabled]="!formValidator()"
-          mat-flat-button color="primary" class="col-span-1">Ingresar</button>
+          mat-button color="primary" class="col-span-1 text-2xl">Ingresar</button>
 </form>

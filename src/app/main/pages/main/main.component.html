@@ -2,13 +2,13 @@
 
     <!--Navbar-->
 
-    <app-navbar class="" (onMenuButton)="sidenav.toggle()" [url]="activeUrl"></app-navbar>
+    <app-navbar class="sticky top-0 z-10" (onMenuButton)="sidenav.toggle()" [url]="activeUrl"></app-navbar>
 
     <!--Sidenav-->
 
-    <mat-sidenav-container class="h-screen">
+    <mat-sidenav-container class="h-full">
 
-        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-36 bg-slate-100">
+        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-36 bg-gay-50">
             
             <div *ngFor="let item of sidenavItems">
                 <a mat-button routerLink="{{item.link}}"
