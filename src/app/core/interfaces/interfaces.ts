@@ -26,6 +26,7 @@ export interface LoginResponse {
 
 export interface Chemical {
     chemical: string;
+    _id: string;
     hazards?: Hazard[];
     providers?: string[];
     manufacturers?: string[];
@@ -33,17 +34,16 @@ export interface Chemical {
     h_phrases?: Phrase[];
     ppes?: Ppe[];
     sds?: string[];
-    _id?: string;
     fsms?: Approval;
     ems?: Approval;
     ohsms?: Approval;
-    last_update_by?: UpdateBy;
+    last_update_by: UpdateBy;
     last_update_date?: Date;
     status?: boolean;
 }
 
 export interface Approval {
-    approval: boolean;
+    approval: boolean | string;
     approbed_by: string;
     approval_date: Date;
 }

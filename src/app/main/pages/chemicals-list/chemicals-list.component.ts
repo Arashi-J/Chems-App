@@ -16,36 +16,43 @@ export class ChemicalsListComponent implements OnInit, AfterViewInit {
 
 
 
+
   columns = [
     {
       columnDef: 'chemical',
       header: 'Sustancia Química',
-      cell: (chemical: Chemical) => `${ chemical.chemical }`,
+      cell: (chemical: Chemical) => chemical.chemical,
+      link: (chemical: Chemical) => chemical._id
     },
     {
       columnDef: 'fsms',
       header: 'Aprobación SGIA',
-      cell: (chemical: Chemical) => `${ chemical.fsms?.approval ? 'Aprobado' : 'No Aprobado' }`,
+      cell: (chemical: Chemical) => chemical.fsms?.approval ? 'Aprobado' : 'No Aprobado',
+      link: (chemical: Chemical) => chemical._id
     },
     {
       columnDef: 'ems',
       header: 'Aprobación SGA',
-      cell: (chemical: Chemical) => `${ chemical.ems?.approval ? 'Aprobado' : 'No Aprobado' }`,
+      cell: (chemical: Chemical) => chemical.ems?.approval ? 'Aprobado' : 'No Aprobado',
+      link: (chemical: Chemical) => chemical._id
     },
     {
       columnDef: 'ohsms',
       header: 'Aprobación SGSST',
-      cell: (chemical: Chemical) => `${ chemical.ohsms?.approval ? 'Aprobado' : 'No Aprobado' }`,
+      cell: (chemical: Chemical) => chemical.ohsms?.approval ? 'Aprobado' : 'No Aprobado',
+      link: (chemical: Chemical) => chemical._id
     },
     {
       columnDef: 'status',
       header: 'Estado de la Sustancia Química',
-      cell: (chemical: Chemical) => `${ chemical.status ? 'Activo' : 'Inactivo' }`,
+      cell: (chemical: Chemical) => chemical.status ? 'Activo' : 'Inactivo',
+      link: (chemical: Chemical) => chemical._id
     },
 
   ];
 
   displayedColumns = this.columns.map(c => c.columnDef);
+  displayedColumnsExpanded = [this.displayedColumns, 'details'];
 
   dataSource!: MatTableDataSource<Chemical>;
 
@@ -75,7 +82,6 @@ export class ChemicalsListComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 
 
 }

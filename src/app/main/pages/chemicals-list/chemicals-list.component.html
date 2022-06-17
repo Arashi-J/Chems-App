@@ -1,4 +1,4 @@
-<p class="text-center text-3xl font-bold">Listado de Sustancias Químicas</p>
+<p class="text-center text-3xl font-bold text-indigo-900">Listado de Sustancias Químicas</p>
 
 <div>
 
@@ -10,17 +10,19 @@
     <table mat-table [dataSource]="dataSource"
            matSort class="w-full">
 
-        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                {{column.header}}
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef" justify="right">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="">
+                <div>{{column.header}}</div>
             </th>
-            <td mat-cell *matCellDef="let row">
-                {{column.cell(row)}}
+            <td mat-cell *matCellDef="let item" routerLink="{{column.link(item)}}" class="text-center cursor-pointer">
+                {{column.cell(item)}}
             </td>
         </ng-container>
 
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            class="hover:text-indigo-900 hover:bg-indigo-50 hover:font-semibold"></tr>
 
         <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="5">No se encontraron resultados de: "{{input.value}}"</td>

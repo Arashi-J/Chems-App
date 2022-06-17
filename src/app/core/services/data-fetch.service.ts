@@ -15,6 +15,7 @@ export class DataFetchService {
   headers = new HttpHeaders()
     .set('Authorization', `Bearer ${ this.token }` || '');
 
+
   constructor(private http: HttpClient) { }
 
 
@@ -25,4 +26,9 @@ export class DataFetchService {
     return this.http.get<Type[]>(url, { headers });
   }
 
+  get_item<Type>(endpoint: string): Observable<Type> {
+    const url = `${ this.baseUrl }/${ endpoint }/`;
+    const headers = this.headers;
+    return this.http.get<Type>(url, { headers });
+  }
 }
