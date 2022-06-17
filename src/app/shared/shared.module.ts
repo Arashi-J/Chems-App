@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MaterialModule } from 'src/app/material.module'
+import { MaterialModule } from 'src/app/material.module';
+import { TableComponent } from './table/table.component'
+import { MainRoutingModule } from '../main/main-routing.module';
 
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    MainRoutingModule
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    TableComponent
   ]
 })
 export class SharedModule { }

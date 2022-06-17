@@ -12,7 +12,7 @@ import { DataFetchService } from 'src/app/core/services/data-fetch.service';
   templateUrl: './chemicals-list.component.html',
   styleUrls: ['./chemicals-list.component.scss']
 })
-export class ChemicalsListComponent implements OnInit, AfterViewInit {
+export class ChemicalsListComponent implements OnInit {
 
 
 
@@ -72,9 +72,7 @@ export class ChemicalsListComponent implements OnInit, AfterViewInit {
       });
   }
 
-  ngAfterViewInit(): void {
 
-  }
 
   applyFilter() {
     this.dataSource.filter = this.inputFilter.nativeElement.value.trim().toLowerCase();

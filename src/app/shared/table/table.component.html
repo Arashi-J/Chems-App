@@ -1,0 +1,33 @@
+<p>table works!</p>
+
+<mat-form-field appearance="standard" class="w-full">
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter()" placeholder="Ej. Alcohol" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource"
+       matSort class="w-full">
+
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef" justify="right">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="">
+            <div>{{column.header}}</div>
+        </th>
+        <td mat-cell *matCellDef="let item" routerLink="{{column.link(item)}}" class="text-center cursor-pointer">
+            {{column.cell(item)}}
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        class="hover:text-indigo-900 hover:bg-indigo-50 hover:font-semibold"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="5">No se encontraron resultados de: "{{input.value}}"</td>
+    </tr>
+
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 100]" class="sticky bottom-0 z-10"
+               area-label="Seleccionar número de elementos a mostrar"></mat-paginator>
