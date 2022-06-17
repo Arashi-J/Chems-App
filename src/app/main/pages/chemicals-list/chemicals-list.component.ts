@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Chemical } from 'src/app/core/interfaces/interfaces';
+import { Chemical, Column } from 'src/app/core/interfaces/interfaces';
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ChemicalsListComponent implements OnInit {
 
 
 
-  columns = [
+  columns: Column[] = [
     {
       columnDef: 'chemical',
       header: 'Sustancia Química',
@@ -52,7 +52,6 @@ export class ChemicalsListComponent implements OnInit {
   ];
 
   displayedColumns = this.columns.map(c => c.columnDef);
-  displayedColumnsExpanded = [this.displayedColumns, 'details'];
 
   dataSource!: MatTableDataSource<Chemical>;
 

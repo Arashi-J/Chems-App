@@ -83,3 +83,9 @@ export interface Area {
     status: boolean;
 }
 
+export interface Column {
+    columnDef: string;
+    header: string;
+    cell: any;
+    link: any;
+  }

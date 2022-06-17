@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Area, Chemical, User } from 'src/app/core/interfaces/interfaces';
+import { Area, Chemical, Column, User } from 'src/app/core/interfaces/interfaces';
 
 @Component({
   selector: 'app-table',
@@ -12,12 +12,12 @@ import { Area, Chemical, User } from 'src/app/core/interfaces/interfaces';
 export class TableComponent implements OnInit {
 
   @Input() dataSource!: MatTableDataSource<Area | Chemical | User>
-  @Input() columns!: any[]
+  @Input() columns!: Column[]
   @ViewChild('input') inputFilter!: ElementRef<HTMLInputElement>
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns!: any[]
+  displayedColumns =  this.columns.map(c => c.columnDef);
 
   constructor() { }
 
