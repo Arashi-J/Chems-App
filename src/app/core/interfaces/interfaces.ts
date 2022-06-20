@@ -83,9 +83,9 @@ export interface Area {
     status: boolean;
 }
 
-export interface Column {
+export interface Column<T>{
     columnDef: string;
     header: string;
-    cell: any;
-    link: any;
-  }
+    cell: (item: T) => string;
+    link: (item: T) => string;
+}

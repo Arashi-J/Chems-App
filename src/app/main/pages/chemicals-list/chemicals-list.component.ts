@@ -1,10 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 
 import { Chemical, Column } from 'src/app/core/interfaces/interfaces';
+
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 
 @Component({
@@ -14,10 +11,7 @@ import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 })
 export class ChemicalsListComponent implements OnInit {
 
-
-
-
-  columns: Column[] = [
+  columns: Column<Chemical>[] = [
     {
       columnDef: 'chemical',
       header: 'Sustancia Química',
@@ -51,34 +45,14 @@ export class ChemicalsListComponent implements OnInit {
 
   ];
 
-  displayedColumns = this.columns.map(c => c.columnDef);
-
-  dataSource!: MatTableDataSource<Chemical>;
-
-  @ViewChild('input') inputFilter!: ElementRef<HTMLInputElement>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  chemicals!: Chemical[];
 
   constructor(
     private data: DataFetchService) { }
 
   ngOnInit(): void {
     this.data.get_items<Chemical>('chemicals')
-      .subscribe(resp => {
-        this.dataSource = new MatTableDataSource(resp);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      });
+      .subscribe(chemicals => this.chemicals = chemicals);
   }
-
-
-
-  applyFilter() {
-    this.dataSource.filter = this.inputFilter.nativeElement.value.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
 
 }
