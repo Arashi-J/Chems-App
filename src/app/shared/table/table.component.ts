@@ -18,7 +18,7 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  dataSource!: MatTableDataSource<T>;
+  dataSource!: NestedMatTableDataSource<T>;
 
   displayedColumns!: string[];
 
@@ -27,7 +27,7 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.displayedColumns = this.columns.map(c => c.columnDef);
-    this.dataSource = new MatTableDataSource(this.data);
+    this.dataSource = new NestedMatTableDataSource(this.data);
 
   }
 
@@ -48,3 +48,31 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
   }
 
 }
+
+
+class NestedMatTableDataSource<T> extends MatTableDataSource<T> {
+
+  constructor(initialData: T[] = []) {
+    super(initialData);
+  }
+
+  override sortingDataAccessor = (data: any, sortHeaderId: string): string | number => {
+    const value = sortHeaderId.split('.')
+      .reduce((accumulator, key) => accumulator && accumulator[key], data) as | string | number;
+
+    if (typeof(value) === 'boolean'){
+      if (value=== true) {
+        return 'A'
+      } else if( value === false){
+        return 'B'
+      }else {
+        return value
+      }
+    }
+    return value
+  };
+
+}
+
+
+

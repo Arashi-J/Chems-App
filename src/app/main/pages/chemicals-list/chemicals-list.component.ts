@@ -19,19 +19,19 @@ export class ChemicalsListComponent implements OnInit {
       link: (chemical: Chemical) => chemical._id
     },
     {
-      columnDef: 'fsms',
+      columnDef: 'fsms.approval',
       header: 'Aprobación SGIA',
       cell: (chemical: Chemical) => chemical.fsms?.approval ? 'Aprobado' : 'No Aprobado',
       link: (chemical: Chemical) => chemical._id
     },
     {
-      columnDef: 'ems',
+      columnDef: 'ems.approval',
       header: 'Aprobación SGA',
       cell: (chemical: Chemical) => chemical.ems?.approval ? 'Aprobado' : 'No Aprobado',
       link: (chemical: Chemical) => chemical._id
     },
     {
-      columnDef: 'ohsms',
+      columnDef: 'ohsms.approval',
       header: 'Aprobación SGSST',
       cell: (chemical: Chemical) => chemical.ohsms?.approval ? 'Aprobado' : 'No Aprobado',
       link: (chemical: Chemical) => chemical._id
