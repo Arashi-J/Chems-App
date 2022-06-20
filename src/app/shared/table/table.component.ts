@@ -62,9 +62,9 @@ class NestedMatTableDataSource<T> extends MatTableDataSource<T> {
 
     if (typeof(value) === 'boolean'){
       if (value=== true) {
-        return 'A'
+        return 0
       } else if( value === false){
-        return 'B'
+        return 1
       }else {
         return value
       }
