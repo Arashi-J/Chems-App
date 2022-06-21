@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -8,7 +9,7 @@ import { FormValidatorService } from 'src/app/core/services/form-validator.servi
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  styles: []
 })
 export class LoginFormComponent {
 
@@ -26,7 +27,8 @@ export class LoginFormComponent {
     private auth: AuthService,
     private router: Router,
     private fb: NonNullableFormBuilder,
-    private fv: FormValidatorService
+    private fv: FormValidatorService,
+    private snackBar: MatSnackBar
   ) { }
 
   formValidator(): boolean {
@@ -38,7 +40,13 @@ export class LoginFormComponent {
     this.auth.login(username!, password!)
       .subscribe({
         next: resp => this.router.navigateByUrl('/main'),
-        error: error => console.error(error.error)
+        error: error => this.loginError()
       });
+  }
+
+  loginError() {
+    this.snackBar.open(
+      'Usuario o Contraseña Inválidos', 'Cerrar', { duration: 3000 }
+    );
   }
 }

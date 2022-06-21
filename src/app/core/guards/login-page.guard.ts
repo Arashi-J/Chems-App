@@ -24,9 +24,6 @@ export class LoginPageGuard implements CanActivate, CanLoad {
 
   }
 
-
-
-
   canLoad(): Observable<boolean> | boolean {
     return this.auth.not_active_token()
       .pipe(
@@ -38,7 +35,5 @@ export class LoginPageGuard implements CanActivate, CanLoad {
       );
 
   }
-
-
 
 }
