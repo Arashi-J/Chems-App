@@ -5,9 +5,10 @@ import { LoadingRequestService } from 'src/app/core/services/loading-request.ser
   selector: 'app-spinner',
   template: `
     <div *ngIf="isLoading | async" 
-          class="flex flex-row h-full justify-center items-center bg-indigo-200">
-    <p class="col-span-1 text-5xl font-black text-center uppercase italic text-indigo-900">
-  Chems-App</p>
+          class="flex flex-row h-full justify-center items-center bg-primary-50">
+    <p class="col-span-1 text-5xl font-black text-center uppercase italic text-primary-500">
+      Chem Manager
+    </p>
       <mat-spinner mode="indeterminate" class="mx-8"></mat-spinner>
     </div>
   `,

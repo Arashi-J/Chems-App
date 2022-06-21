@@ -1,42 +1,137 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$Chems-App-primary: mat.define-palette(mat.$indigo-palette);
-$Chems-App-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$Chems-App-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$Chems-App-theme: mat.define-light-theme((
-  color: (
-    primary: $Chems-App-primary,
-    accent: $Chems-App-accent,
-    warn: $Chems-App-warn,
+/* For use in src/lib/core/theming/_palette.scss */
+$blue: (
+  50 : #e0e2ef,
+  100 : #b3b8d6,
+  200 : #8088bb,
+  300 : #4d589f,
+  400 : #26358b,
+  500 : #001176,
+  600 : #000f6e,
+  700 : #000c63,
+  800 : #000a59,
+  900 : #000546,
+  A100 : #7a7dff,
+  A200 : #474bff,
+  A400 : #141aff,
+  A700 : #0005fa,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
   )
-));
+);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
+
+
+$green: (
+  50 : #e2efe0,
+  100 : #b8d6b3,
+  200 : #88bb80,
+  300 : #589f4d,
+  400 : #358b26,
+  500 : #117600,
+  600 : #0f6e00,
+  700 : #0c6300,
+  800 : #0a5900,
+  900 : #054600,
+  A100 : #7dff7a,
+  A200 : #4bff47,
+  A400 : #1aff14,
+  A700 : #05fa00,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$red: (
+  50 : #efe0e2,
+  100 : #d6b3b8,
+  200 : #bb8088,
+  300 : #9f4d58,
+  400 : #8b2635,
+  500 : #760011,
+  600 : #6e000f,
+  700 : #63000c,
+  800 : #59000a,
+  900 : #460005,
+  A100 : #ff7a7d,
+  A200 : #ff474b,
+  A400 : #ff141a,
+  A700 : #fa0005,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+
+
+$Chems-App-primary: mat.define-palette($blue);
+
+$Chems-App-accent: mat.define-palette($green);
+
+$Chems-App-warn: mat.define-palette($red);
+
+
+$Chems-App-theme: mat.define-light-theme((color: (primary: $Chems-App-primary,
+        accent: $Chems-App-accent,
+        warn: $Chems-App-warn,
+      )));
+
+
 @include mat.all-component-themes($Chems-App-theme);
 
-/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";

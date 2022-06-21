@@ -8,17 +8,17 @@
 
     <mat-sidenav-container class="flex-auto w-screen flex flex-row">
 
-        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-36 bg-gray-50">
+        <mat-sidenav [mode]="sidenavMode" opened #sidenav class="w-36 bg-primary-50">
 
             <div *ngFor="let item of sidenavItems">
                 <a mat-button routerLink="{{item.link}}"
                    class="cursor-pointer w-full">
 
-                    <mat-icon routerLinkActive="font-black text-indigo-900"
+                    <mat-icon routerLinkActive="font-black text-primary-500"
                               [routerLinkActiveOptions]="{exact: true}"
                               class="mr-1">{{item.icon}}</mat-icon>
                     <br>
-                    <span routerLinkActive="font-black text-indigo-900"
+                    <span routerLinkActive="font-black text-primary-500"
                           [routerLinkActiveOptions]="{exact: true}"
                           class="leading-3 whitespace-normal">{{item.item | titlecase}}</span>
                 </a>

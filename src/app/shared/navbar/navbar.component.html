@@ -6,14 +6,14 @@
 
     <div class="text-start basis-full">
         <span class="font-bold italic text-4xl uppercase cursor-pointer"
-              (click)="navigateTo()"> Chems-App</span>
+              (click)="navigateTo()">Chem Manager</span>
     </div>
 
 
     <button mat-button
             *ngFor="let item of menuItems"
             class="basis-3/12" (click)="navigateTo(item.link)"
-            [ngClass]="{'bg-indigo-900': '/main/' + url === item.link}">
+            [ngClass]="{'bg-primary-800': '/main/' + url === item.link}">
 
         <mat-icon class="mr-1">{{item.icon}}</mat-icon>
 
