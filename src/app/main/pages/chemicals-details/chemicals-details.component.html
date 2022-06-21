@@ -8,6 +8,8 @@
             <div class="container flex justify-center">
                 <mat-card
                           *ngFor="let hazard of chemical.hazards"
+                          matTooltip="{{hazard.description}}"
+                          matTooltipClass="text-sm"
                           class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center p-0">
 
                     <img mat-card-image
