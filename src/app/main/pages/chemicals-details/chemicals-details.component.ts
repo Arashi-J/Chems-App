@@ -4,6 +4,7 @@ import { switchMap } from 'rxjs';
 
 import { Chemical } from 'src/app/core/interfaces/interfaces';
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chemicals-details',
@@ -13,6 +14,8 @@ import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 export class ChemicalsDetailsComponent implements OnInit {
 
   chemical!: Chemical;
+
+  baseUrl: string = environment.baseUrl
 
   constructor(
     private data: DataFetchService,

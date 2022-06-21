@@ -27,17 +27,17 @@ export interface LoginResponse {
 export interface Chemical {
     chemical: string;
     _id: string;
-    hazards?: Hazard[];
-    providers?: string[];
-    manufacturers?: string[];
-    p_phrases?: Phrase[];
-    h_phrases?: Phrase[];
-    ppes?: Ppe[];
-    sds?: string[];
+    hazards: Hazard[];
+    providers: string[];
+    manufacturers: string[];
+    p_phrases: Phrase[];
+    h_phrases: Phrase[];
+    ppes: Ppe[];
+    sds: string[];
     fsms?: Approval;
     ems?: Approval;
     ohsms?: Approval;
-    last_update_by: UpdateBy;
+    last_update_by?: UpdateBy;
     last_update_date?: Date;
     status?: boolean;
 }

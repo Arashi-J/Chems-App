@@ -1,11 +1,84 @@
-<div *ngIf="!(!!chemical)">Cargando...</div>
+<div *ngIf="!(!!chemical)">
+    <mat-spinner mode="indeterminate"></mat-spinner>
 
-<div *ngIf="!!chemical">
-<p  class="text-5xl text-indigo-900">{{chemical.chemical}}</p>
+</div>
+
+<div *ngIf="!!chemical" class="container grid grid-cols-1">
+
+    <p class="text-4xl font-black text-center mt-2">{{chemical.chemical}}</p>
+
+    <section class="container grid grid-cols-2 justify-items-center">
+        <div class="col-span-1">
+            <p class="text-center font-semibold text-xl mb-0">Peligros</p>
+            <div class="container flex justify-center">
+                <mat-card
+                          *ngFor="let hazard of chemical.hazards"
+                          class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center p-0">
+
+                    <img mat-card-image
+                         src="{{ baseUrl + hazard.pictogram }}"
+                         alt="{{hazard.hazard}}"
+                         class="mt-1">
+                    <mat-card-title-group>
+                        <mat-card-title class="text-center text-xs">{{hazard.hazard}}</mat-card-title>
+                        <mat-card-subtitle class="text-center text-xs">{{hazard.code}}</mat-card-subtitle>
+                    </mat-card-title-group>
+                </mat-card>
+            </div>
+        </div>
+
+        <div class="col-span-1">
+            <p class="text-center font-semibold text-xl mb-0">EPP</p>
+            <div class="container flex justify-center">
+                <mat-card *ngFor="let ppe of chemical.ppes"
+                          class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center">
+                    <img mat-card-image
+                         src="{{ baseUrl + ppe.img }}"
+                         alt="{{ppe.ppe}}"
+                         class="mt-1">
+                    <mat-card-title class="text-center text-xs">{{ppe.ppe}}</mat-card-title>
+                </mat-card>
+            </div>
+        </div>
+
+    </section>
+    
+    <div>
+        <p>Indicación de Peligro</p>
+        <div class="container" *ngFor="let h_phrase of chemical.h_phrases">
+            <p>{{ h_phrase.code }}</p>
+            <p>{{ h_phrase.description }}</p>
+        </div>
+    </div>
+
+    <div>
+        <p>Frase de Prudencia</p>
+        <div class="container" *ngFor="let p_phrase of chemical.p_phrases">
+            <p>{{ p_phrase.code }}</p>
+            <p>{{ p_phrase.description }}</p>
+        </div>
+    </div>
+
+    <div>
+        <p>Fabricantes</p>
+        <div class="container" *ngFor="let manufacturer of chemical.manufacturers">
+            <p>{{ manufacturer }}</p>
+        </div>
+    </div>
+
+    <div>
+        <p>Proveedores</p>
+        <div class="container" *ngFor="let provider of chemical.providers">
+            <p>{{ provider }}</p>
+        </div>
+    </div>
 
 
-<p>Actualizado por {{chemical.last_update_by.username }}</p>
 
+
+
+
+    <p>Actualizado por {{chemical.last_update_by!.username || null}}</p>
 </div>
 
 <button mat-button color="primary" (click)="back()">Regresar</button>

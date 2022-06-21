@@ -1,6 +1,8 @@
 <p class="text-center text-3xl font-bold text-indigo-900">Listado de Sustancias Químicas</p>
 
-<div *ngIf="!chemicals">Cargando..</div>
+<div *ngIf="!chemicals">
+    <mat-spinner mode="indeterminate"></mat-spinner>
+</div>
 
 <div *ngIf="chemicals">
 
