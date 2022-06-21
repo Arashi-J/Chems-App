@@ -4,13 +4,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { TableComponent } from './table/table.component'
 import { MainRoutingModule } from '../main/main-routing.module';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    TableComponent
+    TableComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { MainRoutingModule } from '../main/main-routing.module';
   ],
   exports: [
     NavbarComponent,
-    TableComponent
+    TableComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

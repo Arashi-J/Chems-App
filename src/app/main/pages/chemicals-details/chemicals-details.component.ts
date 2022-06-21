@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-chemicals-details',
   templateUrl: './chemicals-details.component.html',
-  styleUrls: ['./chemicals-details.component.scss']
+  styles: []
 })
 export class ChemicalsDetailsComponent implements OnInit {
 

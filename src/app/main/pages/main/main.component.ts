@@ -7,7 +7,7 @@ import { filter, map } from 'rxjs';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styles: []
 })
 export class MainComponent implements OnDestroy {
 

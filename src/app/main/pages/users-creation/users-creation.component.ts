@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-users-creation',
   templateUrl: './users-creation.component.html',
-  styleUrls: ['./users-creation.component.scss']
+  styles: []
 })
 export class UsersCreationComponent implements OnInit {
 

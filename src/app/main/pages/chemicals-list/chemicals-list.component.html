@@ -1,8 +1,4 @@
-<div *ngIf="!chemicals" class="flex flex-row h-full justify-center items-center">
-
-    <mat-spinner mode="indeterminate"></mat-spinner>
-
-</div>
+<app-spinner *ngIf="!chemicals"></app-spinner>
 
 <div *ngIf="chemicals">
 

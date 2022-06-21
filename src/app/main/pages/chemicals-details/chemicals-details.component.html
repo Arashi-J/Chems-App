@@ -1,8 +1,4 @@
-<div *ngIf="!(!!chemical)" class="flex flex-row h-full justify-center items-center">
-
-    <mat-spinner  mode="indeterminate"></mat-spinner>
-
-</div>
+<app-spinner *ngIf="!(!!chemical)"></app-spinner>
 
 <div *ngIf="!!chemical" class="container grid grid-cols-1">
 

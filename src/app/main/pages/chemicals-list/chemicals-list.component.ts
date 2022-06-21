@@ -7,7 +7,7 @@ import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 @Component({
   selector: 'app-chemicals-list',
   templateUrl: './chemicals-list.component.html',
-  styleUrls: ['./chemicals-list.component.scss']
+  styles: []
 })
 export class ChemicalsListComponent implements OnInit {
 

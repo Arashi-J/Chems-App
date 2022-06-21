@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-areas-creation',
   templateUrl: './areas-creation.component.html',
-  styleUrls: ['./areas-creation.component.scss']
+  styles: []
 })
 export class AreasCreationComponent implements OnInit {
 
