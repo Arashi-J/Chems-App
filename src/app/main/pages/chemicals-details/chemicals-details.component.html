@@ -40,12 +40,12 @@
 
     </section>
 
-    <section>
-        <div>
-            <p>Indicación de Peligro</p>
-            <div class="container" *ngFor="let h_phrase of chemical.h_phrases">
-                <p>{{ h_phrase.code }}</p>
-                <p>{{ h_phrase.description }}</p>
+    <section class="ml-7">
+        <div class="flex flex-row">
+            <p class="flex-auto w-24">Indicación de Peligro</p>
+            <div class="container flex-auto" *ngFor="let h_phrase of chemical.h_phrases">
+                <span class="">{{ h_phrase.code }}</span>
+                <span class="">{{ h_phrase.description }}</span>
             </div>
         </div>
 
