@@ -1,5 +1,6 @@
-<div *ngIf="!(!!chemical)">
-    <mat-spinner mode="indeterminate"></mat-spinner>
+<div *ngIf="!(!!chemical)" class="flex flex-row h-full justify-center items-center">
+
+    <mat-spinner  mode="indeterminate"></mat-spinner>
 
 </div>
 
@@ -42,43 +43,47 @@
         </div>
 
     </section>
-    
-    <div>
-        <p>Indicación de Peligro</p>
-        <div class="container" *ngFor="let h_phrase of chemical.h_phrases">
-            <p>{{ h_phrase.code }}</p>
-            <p>{{ h_phrase.description }}</p>
+
+    <section>
+        <div>
+            <p>Indicación de Peligro</p>
+            <div class="container" *ngFor="let h_phrase of chemical.h_phrases">
+                <p>{{ h_phrase.code }}</p>
+                <p>{{ h_phrase.description }}</p>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <p>Frase de Prudencia</p>
-        <div class="container" *ngFor="let p_phrase of chemical.p_phrases">
-            <p>{{ p_phrase.code }}</p>
-            <p>{{ p_phrase.description }}</p>
+        <div>
+            <p>Frase de Prudencia</p>
+            <div class="container" *ngFor="let p_phrase of chemical.p_phrases">
+                <p>{{ p_phrase.code }}</p>
+                <p>{{ p_phrase.description }}</p>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <p>Fabricantes</p>
-        <div class="container" *ngFor="let manufacturer of chemical.manufacturers">
-            <p>{{ manufacturer }}</p>
+        <div>
+            <p>Fabricantes: </p>
+            <div class="container" *ngFor="let manufacturer of chemical.manufacturers">
+                <p>{{ manufacturer }}</p>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <p>Proveedores</p>
-        <div class="container" *ngFor="let provider of chemical.providers">
-            <p>{{ provider }}</p>
+        <div>
+            <p>Proveedores: </p>
+            <div class="container" *ngFor="let provider of chemical.providers">
+                <p>{{ provider }}</p>
+            </div>
         </div>
-    </div>
+
+        <div class="container">
+            <p>Áreas: </p>
+        </div>
 
 
+    </section>
 
+    <p>Actualizado por: {{chemical.last_update_by!.username || null}}</p>
 
+    <button mat-button color="primary" (click)="back()">Regresar</button>
 
-
-    <p>Actualizado por {{chemical.last_update_by!.username || null}}</p>
 </div>
-
-<button mat-button color="primary" (click)="back()">Regresar</button>

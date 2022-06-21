@@ -1,10 +1,12 @@
-<p class="text-center text-3xl font-bold text-indigo-900">Listado de Sustancias Químicas</p>
+<div *ngIf="!chemicals" class="flex flex-row h-full justify-center items-center">
 
-<div *ngIf="!chemicals">
     <mat-spinner mode="indeterminate"></mat-spinner>
+
 </div>
 
 <div *ngIf="chemicals">
+
+    <p class="text-center text-3xl font-bold text-indigo-900">Listado de Sustancias Químicas</p>
 
     <app-table [data]="chemicals" [columns]="columns" defaultSortValue="chemical"></app-table>
 
