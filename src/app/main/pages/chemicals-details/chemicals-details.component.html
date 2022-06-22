@@ -108,7 +108,7 @@
                 </div>
 
                 <div *ngIf="item?.approval">
-                    <span class="font-semibold">Apropabo por: </span>{{item?.approbed_by}}
+                    <span class="font-semibold">Apropabo por: </span>{{item?.approbed_by | user}}
                 </div>
 
                 <div *ngIf="item?.approval">
