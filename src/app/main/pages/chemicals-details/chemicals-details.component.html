@@ -1,10 +1,10 @@
-<div *ngIf="!!chemical" class="container grid grid-cols-1">
+<div *ngIf="!!chemical" class="container">
 
-    <p class="text-4xl font-black text-center mt-2">{{chemical.chemical}}</p>
+    <p class="text-4xl font-black text-center mt-2">{{chemical.chemical | uppercase}}</p>
 
-    <section class="container grid grid-cols-2 justify-items-center">
+    <section class="container grid grid-cols-2 justify-items-center mx-7">
         <div class="col-span-1">
-            <p class="text-center font-semibold text-xl mb-0">Peligros</p>
+            <p class="text-center font-semibold text-xl mb-1">Peligros</p>
             <div class="container flex justify-center">
                 <mat-card
                           *ngFor="let hazard of chemical.hazards"
@@ -40,45 +40,56 @@
 
     </section>
 
-    <section class="ml-7">
-        <div class="flex flex-row">
-            <p class="flex-auto w-24">Indicación de Peligro</p>
-            <div class="container flex-auto" *ngFor="let h_phrase of chemical.h_phrases">
-                <span class="">{{ h_phrase.code }}</span>
-                <span class="">{{ h_phrase.description }}</span>
-            </div>
-        </div>
+    <section class="mx-7 mt-7">
 
-        <div>
-            <p>Frase de Prudencia</p>
-            <div class="container" *ngFor="let p_phrase of chemical.p_phrases">
-                <p>{{ p_phrase.code }}</p>
-                <p>{{ p_phrase.description }}</p>
-            </div>
-        </div>
+        <p class="font-black text-lg">Indicación de Peligro</p>
 
-        <div>
-            <p>Fabricantes: </p>
-            <div class="container" *ngFor="let manufacturer of chemical.manufacturers">
-                <p>{{ manufacturer }}</p>
-            </div>
-        </div>
+        <p class="ml-3" *ngFor="let h_phrase of chemical.h_phrases">
+            <span class="font-semibold">{{ h_phrase.code }}: </span>
+            <span class="">{{ h_phrase.description }}</span>
+        </p>
 
-        <div>
-            <p>Proveedores: </p>
-            <div class="container" *ngFor="let provider of chemical.providers">
-                <p>{{ provider }}</p>
-            </div>
-        </div>
 
-        <div class="container">
-            <p>Áreas: </p>
-        </div>
+        <p class="font-black text-lg">Frase de Prudencia</p>
+
+        <p class="ml-3" *ngFor="let p_phrase of chemical.p_phrases">
+            <span class="font-semibold">{{ p_phrase.code }}: </span>
+            <span>{{ p_phrase.description }}</span>
+        </p>
+
+
+        <p class="font-black text-lg">Fabricantes</p>
+        <mat-chip-list class="">
+            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs" *ngFor="let manufacturer of chemical.manufacturers">
+                <span>{{ manufacturer | uppercase }}</span>
+            </mat-chip>
+        </mat-chip-list>
+
+        <p class="font-black text-lg">Proveedores</p>
+        <mat-chip-list class="">
+            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs" *ngFor="let provider of chemical.providers">
+                <span>{{ provider | uppercase }}</span>
+            </mat-chip>
+        </mat-chip-list>
+
+        <p class="font-black text-lg">Áreas</p>
+        <mat-chip-list class="">
+            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs">Contenido</mat-chip>
+        </mat-chip-list>
+
+        <p class="font-black text-lg">Ficha de Seguridad</p>
+        <p *ngFor="let sds; let index=index of chemical.sds" class="ml-3">
+            <a href="{{sds}}" target="_blank" class="text-primary-500">
+                Ver FDS {{index + 1}}
+            </a>
+        </p>
+
+        <p class="mt-10">
+            <span class="font-black"> Actualizado por: </span> {{chemical.last_update_by!.username || null}}
+        </p>
 
 
     </section>
-
-    <p>Actualizado por: {{chemical.last_update_by!.username || null}}</p>
 
     <button mat-button color="primary" (click)="back()">Regresar</button>
 
