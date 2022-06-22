@@ -43,7 +43,7 @@ export interface Chemical {
 }
 
 export interface Approval {
-    approval: boolean | string;
+    approval: boolean;
     approbed_by: string;
     approval_date: Date;
 }

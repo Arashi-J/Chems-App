@@ -2,6 +2,8 @@
 
     <p class="text-4xl font-black text-center mt-2">{{chemical.chemical | uppercase}}</p>
 
+    <!-- Sección Peligros y EPP -->
+
     <section class="container grid grid-cols-2 justify-items-center mx-7">
         <div class="col-span-1">
             <p class="text-center font-semibold text-xl mb-1">Peligros</p>
@@ -40,6 +42,8 @@
 
     </section>
 
+    <!-- Sección Información de los peligros -->
+
     <section class="mx-7 mt-7">
 
         <p class="font-black text-lg">Indicación de Peligro</p>
@@ -60,7 +64,8 @@
 
         <p class="font-black text-lg">Fabricantes</p>
         <mat-chip-list class="">
-            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs" *ngFor="let manufacturer of chemical.manufacturers">
+            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
+                      *ngFor="let manufacturer of chemical.manufacturers">
                 <span>{{ manufacturer | uppercase }}</span>
             </mat-chip>
         </mat-chip-list>
@@ -84,13 +89,46 @@
             </a>
         </p>
 
-        <p class="mt-10">
-            <span class="font-black"> Actualizado por: </span> {{chemical.last_update_by!.username || null}}
+        <p class="font-black text-lg">Estado de la Sustancia Química</p>
+        <p class="ml-3">
+            {{chemical.status ? 'Activo' : 'Inactivo'}}
         </p>
-
 
     </section>
 
-    <button mat-button color="primary" (click)="back()">Regresar</button>
+    <!-- Sección de Aprobación -->
+
+    <section class="mx-7 mt-7">
+        <div class="grid grid-cols-3 border-t border-b border-solid border-primary-500">
+            <div *ngFor="let item of [chemical.fsms, chemical.ems, chemical.ohsms] let i = index"
+                 class="col-span-1 text-center">
+                <div class="font-black text-lg">Aprobación {{managementSystems[i]}}</div>
+                <div><span class="font-semibold">Estado de aprobación: </span>
+                    {{item?.approval ? 'Aprobado' : 'No Aprobado'}}
+                </div>
+
+                <div *ngIf="item?.approval">
+                    <span class="font-semibold">Apropabo por: </span>{{item?.approbed_by}}
+                </div>
+
+                <div *ngIf="item?.approval">
+                    <span class="font-semibold">Fecha de aprobación: </span>{{item?.approval_date | date}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mx-7 mt-7 grid grid-cols-2">
+
+        <button mat-button color="primary" class="col-span-1" (click)="back()">Regresar</button>
+
+        <p class="col-span-1 text-center self-center m-0">
+            <span class="font-black">
+                Actualizado por: </span> {{chemical.last_update_by!.username || null}}
+        </p>
+
+
+    </footer>
+
 
 </div>
