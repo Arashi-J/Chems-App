@@ -23,6 +23,7 @@ export class MainComponent implements OnDestroy {
   sidenavChemicalsItems = [
     { item: 'ver sustancias químicas', link: 'chemicals', icon: 'list', roles: [''] },
     { item: 'añadir sustancia química', link: 'chemicals/new', icon: 'add', roles: [''] },
+    { item: 'aprobar sustancia química', link: '', icon: 'done', roles: [''] },
   ];
 
   sidenavUsersItems = [

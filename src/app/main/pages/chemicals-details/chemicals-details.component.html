@@ -15,7 +15,7 @@
                           *ngFor="let hazard of chemical.hazards"
                           matTooltip="{{hazard.description}}"
                           matTooltipClass="text-sm bg-primary-800 bg-opacity-90"
-                          class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center p-0">
+                          class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center items-center p-0">
 
                     <img mat-card-image
                          src="{{ baseUrl + hazard.pictogram }}"
@@ -25,6 +25,12 @@
                         <mat-card-title class="text-center text-xs">{{hazard.hazard}}</mat-card-title>
                         <mat-card-subtitle class="text-center text-xs">{{hazard.code}}</mat-card-subtitle>
                     </mat-card-title-group>
+                </mat-card>
+                <mat-card *ngIf="chemical.hazards.length < 1"
+                          class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center items-center h-28 p-0">
+                    <mat-card-title class="text-center text-xs">
+                        No aplica según Sistema Globalmente Armonizado
+                    </mat-card-title>
                 </mat-card>
             </div>
         </div>
@@ -42,6 +48,10 @@
                          class="mt-1">
                     <mat-card-title class="text-center text-xs">{{ppe.ppe}}</mat-card-title>
                 </mat-card>
+                <mat-card *ngIf="chemical.ppes.length < 1"
+                          class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center items-center h-28 p-0">
+                    <mat-card-title class="text-center text-xs">No requiere</mat-card-title>
+                </mat-card>
             </div>
         </div>
 
@@ -53,30 +63,41 @@
 
         <!-- Indicaciones de Peligro y Frases de Prudencia -->
 
-        <div *ngFor="let phrases of [chemical.h_phrases, chemical.p_phrases]; let i = index">
+        <ng-container *ngFor="let phrases of [chemical.h_phrases, chemical.p_phrases]; let i = index">
             <p class="font-black text-lg"> {{phrasesTitles[i]}}</p>
+
+            <p *ngIf="phrases.length < 1">No Aplica</p>
 
             <p class="ml-3" *ngFor="let phrase of phrases">
                 <span class="font-semibold">{{ phrase.code }}: </span>
                 <span class="">{{ phrase.description }}</span>
             </p>
-        </div>
+
+        </ng-container>
 
         <!-- Fabricantes, Proveedores y Areas -->
 
-        <div *ngFor="let section of [chemical.manufacturers, chemical.providers, areas]; let i = index">
+        <ng-container *ngFor="let section of [chemical.manufacturers, chemical.providers, areas]; let i = index">
             <p class="font-black text-lg">{{infoTitles[i]}}</p>
-            <mat-chip-list class="">
-                <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
+
+            <p *ngIf="section.length < 1">Información no suministrada</p>
+
+            <mat-chip-list>
+                <mat-chip color="primary" selected class="ml-3 mb-5 text-xs"
                           *ngFor="let item of section">
                     <span>{{ item | uppercase }}</span>
                 </mat-chip>
             </mat-chip-list>
-        </div>
+
+        </ng-container>
 
         <!-- Fichas de Seguridad -->
 
+
         <p class="font-black text-lg">Ficha de Seguridad</p>
+
+        <p *ngIf="chemical.sds.length < 1">Información no suministrada</p>
+
         <p *ngFor="let sds; let index=index of chemical.sds" class="ml-3">
             <a href="{{sds}}" target="_blank" class="text-primary-500">
                 Ver FDS {{index + 1}}
@@ -115,6 +136,7 @@
         </div>
     </section>
 
+    <!-- Botones Regresar y Editar e Información de actualziación-->
 
     <footer class="mx-7 my-7 grid grid-cols-3">
 
@@ -128,10 +150,17 @@
             Editar
         </button>
 
-        <p class="col-span-1 text-center self-center m-0">
-            <span class="font-black">
-                Actualizado por: </span> {{chemical.last_update_by.full_user_name}}
-        </p>
+        <div class="col-span-1 text-end self-center my-0">
+
+            <p>
+                <span class="font-black">
+                    Actualizado por: </span> {{chemical.last_update_by.full_user_name}}
+            </p>
+            <p>
+                <span class="font-black">
+                    Fecha de actualización: </span> {{chemical.last_update_date | dates}}
+            </p>
+        </div>
 
 
     </footer>

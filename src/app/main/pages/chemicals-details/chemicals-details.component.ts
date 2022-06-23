@@ -15,7 +15,7 @@ export class ChemicalsDetailsComponent implements OnInit {
 
   chemical!: Chemical;
 
-  areas!: string[];
+  areas: string[] = [];
 
   baseUrl: string = environment.baseUrl;
 
@@ -40,6 +40,8 @@ export class ChemicalsDetailsComponent implements OnInit {
         map(chemical => this.chemical = chemical),
         switchMap(chemical => {
           return forkJoin({
+            areas: this.dataSrv.get_items<Area>(`chemicals/areas/${ chemical._id }`),
+
             fsms: chemical.fsms.approval ?
               this.dataSrv.get_item<User>(`users/${ chemical.fsms.approbed_by }`) : of(null),
 
@@ -51,10 +53,12 @@ export class ChemicalsDetailsComponent implements OnInit {
 
             updatedBy: this.dataSrv.get_item<User>(`users/${ chemical.last_update_by._id }`),
 
-            areas: this.dataSrv.get_items<Area>(`chemicals/areas/${ chemical._id }`)
           });
         })
       ).subscribe(({ fsms, ems, ohsms, updatedBy, areas }) => {
+
+        this.areas =  areas.map(area => area.area)
+
         if (fsms) {
           this.chemical.fsms.approbed_by = `${ fsms.firstname } ${ fsms.lastname }`;
         }
@@ -66,7 +70,7 @@ export class ChemicalsDetailsComponent implements OnInit {
         }
         this.chemical.last_update_by.full_user_name = `${ updatedBy.firstname } ${ updatedBy.lastname }`;
 
-        this.areas =  areas.map(area => area.area)
+        
 
       });
   };
