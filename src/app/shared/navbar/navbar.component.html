@@ -12,7 +12,7 @@
 
     <button mat-button
             *ngFor="let item of menuItems"
-            class="basis-3/12" (click)="navigateTo(item.link)"
+            class="basis-3/12 hover:bg-primary-400" (click)="navigateTo(item.link)"
             [ngClass]="{'bg-primary-800': '/main/' + url === item.link}">
 
         <mat-icon class="mr-1">{{item.icon}}</mat-icon>
@@ -25,7 +25,7 @@
         {{activeUser.firstname + ' ' + activeUser.lastname}}
     </span>
 
-    <button mat-button (click)="logout()" class="basis-4/12 w-28">
+    <button mat-button (click)="logout()" class="basis-4/12 hover:bg-primary-400 w-28">
         <mat-icon class="mr-1">logout</mat-icon>
         <span>Cerrar Sesión</span>
     </button>

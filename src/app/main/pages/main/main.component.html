@@ -12,7 +12,7 @@
 
             <div *ngFor="let item of sidenavItems">
                 <a mat-button routerLink="{{item.link}}"
-                   class="cursor-pointer w-full">
+                   class="cursor-pointer w-full hover:bg-primary-100">
 
                     <mat-icon routerLinkActive="font-black text-primary-500"
                               [routerLinkActiveOptions]="{exact: true}"

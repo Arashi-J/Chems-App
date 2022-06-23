@@ -108,7 +108,8 @@
                 </div>
 
                 <div *ngIf="item.approval">
-                    <span class="font-semibold">Fecha de aprobación: </span>{{ item.approval_date | date:'medium':'-1000'}}
+                    <span class="font-semibold">Fecha de aprobación: </span>{{ item.approval_date | dates}}
+                    <!-- <span class="font-semibold">Fecha de aprobación: </span>{{ item.approval_date | date:'medium':'-1000'}} -->
                 </div>
             </div>
         </div>
