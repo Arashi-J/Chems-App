@@ -5,7 +5,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { TableComponent } from './table/table.component'
 import { MainRoutingModule } from '../main/main-routing.module';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { UserPipe } from './pipes/user.pipe';
+
 
 
 
@@ -13,8 +13,7 @@ import { UserPipe } from './pipes/user.pipe';
   declarations: [
     NavbarComponent,
     TableComponent,
-    SpinnerComponent,
-    UserPipe
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -24,8 +23,7 @@ import { UserPipe } from './pipes/user.pipe';
   exports: [
     NavbarComponent,
     TableComponent,
-    SpinnerComponent,
-    UserPipe
+    SpinnerComponent
   ]
 })
 export class SharedModule { }
