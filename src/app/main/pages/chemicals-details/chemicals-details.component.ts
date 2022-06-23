@@ -15,11 +15,15 @@ export class ChemicalsDetailsComponent implements OnInit {
 
   chemical!: Chemical;
 
-  areas!: Area[];
+  areas!: string[];
 
   baseUrl: string = environment.baseUrl;
 
   managementSystems: string[] = ['SGIA', 'SGA', 'SGSST'];
+
+  phrasesTitles: string[] = ['Indicación de Peligro', 'Frase de Prudencia']
+
+  infoTitles: string[] = ['Fabricantes', 'Proveedores', 'Areas']
 
 
   constructor(
@@ -61,10 +65,15 @@ export class ChemicalsDetailsComponent implements OnInit {
           this.chemical.ohsms.approbed_by = `${ ohsms.firstname } ${ ohsms.lastname }`;
         }
         this.chemical.last_update_by.full_user_name = `${ updatedBy.firstname } ${ updatedBy.lastname }`;
-        this.areas = areas;
+
+        this.areas =  areas.map(area => area.area)
+
       });
   };
 
+  edit() {
+    this.router.navigateByUrl('main/chemicals/new');
+  }
   back() {
     this.router.navigateByUrl('main/chemicals');
   }

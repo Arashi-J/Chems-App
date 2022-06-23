@@ -2,9 +2,12 @@
 
     <p class="text-4xl font-black text-center mt-2">{{chemical.chemical | uppercase}}</p>
 
-    <!-- Sección Peligros y EPP -->
+    <!-- Sección Pictogramas Peligros y EPP -->
 
     <section class="container grid grid-cols-2 justify-items-center mx-7">
+
+        <!-- Peligros -->
+
         <div class="col-span-1">
             <p class="text-center font-semibold text-xl mb-1">Peligros</p>
             <div class="container flex justify-center">
@@ -26,6 +29,8 @@
             </div>
         </div>
 
+        <!-- EPPs -->
+
         <div class="col-span-1">
             <p class="text-center font-semibold text-xl mb-0">EPP</p>
             <div class="container flex justify-center">
@@ -42,49 +47,34 @@
 
     </section>
 
-    <!-- Sección Información de los peligros -->
+    <!-- Sección Información -->
 
     <section class="mx-7 mt-7">
 
-        <p class="font-black text-lg">Indicación de Peligro</p>
+        <!-- Indicaciones de Peligro y Frases de Prudencia -->
 
-        <p class="ml-3" *ngFor="let h_phrase of chemical.h_phrases">
-            <span class="font-semibold">{{ h_phrase.code }}: </span>
-            <span class="">{{ h_phrase.description }}</span>
-        </p>
+        <div *ngFor="let phrases of [chemical.h_phrases, chemical.p_phrases]; let i = index">
+            <p class="font-black text-lg"> {{phrasesTitles[i]}}</p>
 
+            <p class="ml-3" *ngFor="let phrase of phrases">
+                <span class="font-semibold">{{ phrase.code }}: </span>
+                <span class="">{{ phrase.description }}</span>
+            </p>
+        </div>
 
-        <p class="font-black text-lg">Frase de Prudencia</p>
+        <!-- Fabricantes, Proveedores y Areas -->
 
-        <p class="ml-3" *ngFor="let p_phrase of chemical.p_phrases">
-            <span class="font-semibold">{{ p_phrase.code }}: </span>
-            <span>{{ p_phrase.description }}</span>
-        </p>
+        <div *ngFor="let section of [chemical.manufacturers, chemical.providers, areas]; let i = index">
+            <p class="font-black text-lg">{{infoTitles[i]}}</p>
+            <mat-chip-list class="">
+                <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
+                          *ngFor="let item of section">
+                    <span>{{ item | uppercase }}</span>
+                </mat-chip>
+            </mat-chip-list>
+        </div>
 
-
-        <p class="font-black text-lg">Fabricantes</p>
-        <mat-chip-list class="">
-            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
-                      *ngFor="let manufacturer of chemical.manufacturers">
-                <span>{{ manufacturer | uppercase }}</span>
-            </mat-chip>
-        </mat-chip-list>
-
-        <p class="font-black text-lg">Proveedores</p>
-        <mat-chip-list class="">
-            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
-                      *ngFor="let provider of chemical.providers">
-                <span>{{ provider | uppercase }}</span>
-            </mat-chip>
-        </mat-chip-list>
-
-        <p class="font-black text-lg">Áreas</p>
-        <mat-chip-list class="">
-            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
-            *ngFor="let area of areas">
-                <span>{{area.area | uppercase}}</span>
-            </mat-chip>
-        </mat-chip-list>
+        <!-- Fichas de Seguridad -->
 
         <p class="font-black text-lg">Ficha de Seguridad</p>
         <p *ngFor="let sds; let index=index of chemical.sds" class="ml-3">
@@ -93,6 +83,8 @@
             </a>
         </p>
 
+        <!-- Estado de la Sustancia Química -->
+
         <p class="font-black text-lg">Estado de la Sustancia Química</p>
         <p class="ml-3">
             {{chemical.status ? 'Activo' : 'Inactivo'}}
@@ -100,7 +92,7 @@
 
     </section>
 
-    <!-- Sección de Aprobación -->
+    <!-- Aprobación -->
 
     <section class="mx-7 mt-7">
         <div class="grid grid-cols-3 border-t border-b border-solid border-primary-500">
@@ -116,16 +108,24 @@
                 </div>
 
                 <div *ngIf="item.approval">
-                    <span class="font-semibold">Fecha de aprobación: </span>{{item.approval_date | date}}
+                    <span class="font-semibold">Fecha de aprobación: </span>{{ item.approval_date | date:'medium':'-1000'}}
                 </div>
             </div>
         </div>
     </section>
 
 
-    <footer class="mx-7 mt-7 grid grid-cols-2">
+    <footer class="mx-7 my-7 grid grid-cols-3">
 
-        <button mat-button color="primary" class="col-span-1" (click)="back()">Regresar</button>
+        <button mat-button color="primary" class="col-span-1" (click)="back()">
+            <mat-icon>keyboard_return</mat-icon>
+            Regresar
+        </button>
+
+        <button mat-button color="primary" class="col-span-1" (click)="edit()">
+            <mat-icon>edit</mat-icon>
+            Editar
+        </button>
 
         <p class="col-span-1 text-center self-center m-0">
             <span class="font-black">
