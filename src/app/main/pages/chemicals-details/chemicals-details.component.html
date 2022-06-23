@@ -72,14 +72,18 @@
 
         <p class="font-black text-lg">Proveedores</p>
         <mat-chip-list class="">
-            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs" *ngFor="let provider of chemical.providers">
+            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
+                      *ngFor="let provider of chemical.providers">
                 <span>{{ provider | uppercase }}</span>
             </mat-chip>
         </mat-chip-list>
 
         <p class="font-black text-lg">Áreas</p>
         <mat-chip-list class="">
-            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs">Contenido</mat-chip>
+            <mat-chip color="primary" selected class="ml-3 mb-4 text-xs"
+            *ngFor="let area of areas">
+                <span>{{area.area | uppercase}}</span>
+            </mat-chip>
         </mat-chip-list>
 
         <p class="font-black text-lg">Ficha de Seguridad</p>
@@ -104,15 +108,15 @@
                  class="col-span-1 text-center">
                 <div class="font-black text-lg">Aprobación {{managementSystems[i]}}</div>
                 <div><span class="font-semibold">Estado de aprobación: </span>
-                    {{item?.approval ? 'Aprobado' : 'No Aprobado'}}
+                    {{item.approval ? 'Aprobado' : 'No Aprobado'}}
                 </div>
 
-                <div *ngIf="item?.approval">
-                    <span class="font-semibold">Apropabo por: </span>
+                <div *ngIf="item.approval">
+                    <span class="font-semibold">Apropabo por: </span>{{ item.approbed_by }}
                 </div>
 
-                <div *ngIf="item?.approval">
-                    <span class="font-semibold">Fecha de aprobación: </span>{{item?.approval_date | date}}
+                <div *ngIf="item.approval">
+                    <span class="font-semibold">Fecha de aprobación: </span>{{item.approval_date | date}}
                 </div>
             </div>
         </div>
@@ -125,7 +129,7 @@
 
         <p class="col-span-1 text-center self-center m-0">
             <span class="font-black">
-                Actualizado por: </span> {{chemical.last_update_by!.username || null}}
+                Actualizado por: </span> {{chemical.last_update_by.full_user_name}}
         </p>
 
 

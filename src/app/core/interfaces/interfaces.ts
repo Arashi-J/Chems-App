@@ -34,12 +34,12 @@ export interface Chemical {
     h_phrases: Phrase[];
     ppes: Ppe[];
     sds: string[];
-    fsms?: Approval;
-    ems?: Approval;
-    ohsms?: Approval;
-    last_update_by?: UpdateBy;
-    last_update_date?: Date;
-    status?: boolean;
+    fsms: Approval;
+    ems: Approval;
+    ohsms: Approval;
+    last_update_by: UpdateBy;
+    last_update_date: Date;
+    status: boolean;
 }
 
 export interface Approval {
@@ -66,6 +66,7 @@ export interface Ppe {
 export interface UpdateBy {
     _id: string;
     username: string;
+    full_user_name?: string
 }
 
 export interface Phrase {
