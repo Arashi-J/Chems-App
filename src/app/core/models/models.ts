@@ -90,3 +90,12 @@ export interface Column<T>{
     cell: (item: T) => string;
     link: (item: T) => string;
 }
+
+
+
+
+//State Models
+
+export interface AuthState {
+    activeUser: User | null
+}

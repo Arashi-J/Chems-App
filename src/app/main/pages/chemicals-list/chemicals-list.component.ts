@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Chemical, Column } from 'src/app/core/interfaces/interfaces';
+import { Chemical, Column } from 'src/app/core/models/models';
 
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 

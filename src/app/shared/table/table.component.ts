@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit,
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Column } from 'src/app/core/interfaces/interfaces';
+import { Column } from 'src/app/core/models/models';
 
 @Component({
   selector: 'app-table',
