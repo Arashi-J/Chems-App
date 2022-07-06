@@ -3,7 +3,6 @@ export interface User {
     lastname: string;
     email: string;
     username: string;
-    password?: string;
     _id?: string;
     role: Role;
     areas?: Area[];
@@ -66,7 +65,7 @@ export interface Ppe {
 export interface UpdateBy {
     _id: string;
     username: string;
-    full_user_name?: string
+    full_user_name?: string;
 }
 
 export interface Phrase {
@@ -84,7 +83,7 @@ export interface Area {
     status: boolean;
 }
 
-export interface Column<T>{
+export interface Column<T> {
     columnDef: string;
     header: string;
     cell: (item: T) => string;
@@ -97,5 +96,10 @@ export interface Column<T>{
 //State Models
 
 export interface AuthState {
-    activeUser: User | null
+    activeUser: Readonly<User | null>;
+}
+
+
+export interface AppState {
+    auth: AuthState
 }
