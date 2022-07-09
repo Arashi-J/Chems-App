@@ -17,6 +17,6 @@
     <mat-error>Ingrese una contraseña válida</mat-error>
   </mat-form-field>
 
-  <button type="submit" [disabled]="!formValidator()"
+  <button type="submit" [disabled]="loginForm.invalid"
           mat-button color="primary" class="col-span-1 text-2xl">Ingresar</button>
 </form>
