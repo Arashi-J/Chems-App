@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, forkJoin, of } from 'rxjs';
 
-import { Area, Chemical, User } from 'src/app/core/models/models';
+import { Area, Chemical, User } from 'src/app/core/interfaces/interfaces';
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 import { environment } from 'src/environments/environment';
 
