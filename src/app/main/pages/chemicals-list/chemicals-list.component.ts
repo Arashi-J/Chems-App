@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Chemical, Column } from 'src/app/core/interfaces/interfaces';
 
@@ -45,14 +46,12 @@ export class ChemicalsListComponent implements OnInit {
 
   ];
 
-  chemicals!: Chemical[];
+  chemicals$!: Observable<Chemical[]>;
 
   constructor(
     private data: DataFetchService) { }
 
   ngOnInit(): void {
-    this.data.get_items<Chemical>('chemicals')
-      .subscribe(chemicals => this.chemicals = chemicals);
+    this.chemicals$ = this.data.get_items<Chemical>('chemicals');
   }
-
 }
