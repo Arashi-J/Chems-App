@@ -1,4 +1,4 @@
-<div *ngIf="!!chemical" class="container">
+<ng-container *ngIf="(chemical$ | async) as chemical ">
 
     <p class="text-4xl font-black text-center mt-2">{{chemical.chemical | uppercase}}</p>
 
@@ -63,7 +63,8 @@
 
         <!-- Indicaciones de Peligro y Frases de Prudencia -->
 
-        <ng-container *ngFor="let phrases of [chemical.h_phrases, chemical.p_phrases]; let i = index">
+        <ng-container
+                      *ngFor="let phrases of [chemical.h_phrases, chemical.p_phrases]; let i = index">
             <p class="font-black text-lg"> {{phrasesTitles[i]}}</p>
 
             <p *ngIf="phrases.length < 1">No Aplica</p>
@@ -75,10 +76,11 @@
 
         </ng-container>
 
-        <!-- Fabricantes, Proveedores y Areas -->
+        <!-- Fabricantes, Proveedores -->
 
-        <ng-container *ngFor="let section of [chemical.manufacturers, chemical.providers, areas]; let i = index">
-            <p class="font-black text-lg">{{infoTitles[i]}}</p>
+        <ng-container *ngFor="let section of [chemical.manufacturers, chemical.providers]; let i = index">
+
+            <p class="font-black text-lg">{{chemicalSource[i]}}</p>
 
             <p *ngIf="section.length < 1">Información no suministrada</p>
 
@@ -91,12 +93,25 @@
 
         </ng-container>
 
+        <!-- Areas -->
+
+        <p class="font-black text-lg">Areas</p>
+
+        <p *ngIf="chemical.areas!.length < 1">Información no suministrada</p>
+
+        <mat-chip-list>
+            <mat-chip color="primary" selected class="ml-3 mb-5 text-xs"
+                      *ngFor="let area of chemical.areas">
+                <span>{{ area.area | uppercase}}</span>
+            </mat-chip>
+        </mat-chip-list>
+
         <!-- Fichas de Seguridad -->
 
 
         <p class="font-black text-lg">Ficha de Seguridad</p>
 
-        <p *ngIf="chemical.sds.length < 1">Información no suministrada</p>
+        <p *ngIf="chemical.sds!.length < 1">Información no suministrada</p>
 
         <p *ngFor="let sds; let index=index of chemical.sds" class="ml-3">
             <a href="{{sds}}" target="_blank" class="text-primary-500">
@@ -119,18 +134,19 @@
         <div class="grid grid-cols-3 border-t border-b border-solid border-primary-500">
             <div *ngFor="let item of [chemical.fsms, chemical.ems, chemical.ohsms] let i = index"
                  class="col-span-1 text-center">
-                <div class="font-black text-lg">Aprobación {{managementSystems[i]}}</div>
+                <div class="font-black text-lg">Aprobación {{ managementSystems[i] }}</div>
                 <div><span class="font-semibold">Estado de aprobación: </span>
                     {{item.approval ? 'Aprobado' : 'No Aprobado'}}
                 </div>
 
                 <div *ngIf="item.approval">
-                    <span class="font-semibold">Apropabo por: </span>{{ item.approbed_by }}
+                    <span class="font-semibold">Apropabo por:
+                    </span>{{ item.approbed_by.firstname + ' ' + item.approbed_by.lastname }}
                 </div>
 
                 <div *ngIf="item.approval">
                     <span class="font-semibold">Fecha de aprobación: </span>{{ item.approval_date | dates}}
-                    <!-- <span class="font-semibold">Fecha de aprobación: </span>{{ item.approval_date | date:'medium':'-1000'}} -->
+
                 </div>
             </div>
         </div>
@@ -154,7 +170,8 @@
 
             <p>
                 <span class="font-black">
-                    Actualizado por: </span> {{chemical.last_update_by.full_user_name}}
+                    Actualizado por: </span>
+                {{chemical.last_update_by.firstname + ' ' + chemical.last_update_by.lastname}}
             </p>
             <p>
                 <span class="font-black">
@@ -162,8 +179,6 @@
             </p>
         </div>
 
-
     </footer>
 
-
-</div>
+</ng-container>

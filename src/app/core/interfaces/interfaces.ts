@@ -40,11 +40,12 @@ export interface Chemical {
     last_update_by: UpdateBy;
     last_update_date: Date;
     status: boolean;
+    areas?: Area[];
 }
 
 export interface Approval {
     approval: boolean;
-    approbed_by: string;
+    approbed_by: User;
     approval_date: Date;
 }
 
@@ -64,9 +65,10 @@ export interface Ppe {
 }
 
 export interface UpdateBy {
-    _id: string;
+    firstname: string;
+    lastname: string;
     username: string;
-    full_user_name?: string
+    email: string;
 }
 
 export interface Phrase {
@@ -84,7 +86,7 @@ export interface Area {
     status: boolean;
 }
 
-export interface Column<T>{
+export interface Column<T> {
     columnDef: string;
     header: string;
     cell: (item: T) => string;

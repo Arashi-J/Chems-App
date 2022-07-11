@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, switchMap, forkJoin, of } from 'rxjs';
+import { switchMap, tap, Observable, map, forkJoin } from 'rxjs';
 
 import { Area, Chemical, User } from 'src/app/core/interfaces/interfaces';
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
@@ -13,17 +13,15 @@ import { environment } from 'src/environments/environment';
 })
 export class ChemicalsDetailsComponent implements OnInit {
 
-  chemical!: Chemical;
-
-  areas: string[] = [];
+  chemical$!: Observable<Chemical>;
 
   baseUrl: string = environment.baseUrl;
 
   managementSystems: string[] = ['SGIA', 'SGA', 'SGSST'];
 
-  phrasesTitles: string[] = ['Indicación de Peligro', 'Frase de Prudencia']
+  phrasesTitles: string[] = ['Indicación de Peligro', 'Frase de Prudencia'];
 
-  infoTitles: string[] = ['Fabricantes', 'Proveedores', 'Areas']
+  chemicalSource: string[] = ['Fabricantes', 'Proveedores'];
 
 
   constructor(
@@ -33,46 +31,19 @@ export class ChemicalsDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(
-        switchMap(({ id }) => this.dataSrv.get_item<Chemical>(`chemicals/${ id }`))
-      ).pipe(
-        map(chemical => this.chemical = chemical),
-        switchMap(chemical => {
-          return forkJoin({
-            areas: this.dataSrv.get_items<Area>(`chemicals/areas/${ chemical._id }`),
 
-            fsms: chemical.fsms.approval ?
-              this.dataSrv.get_item<User>(`users/${ chemical.fsms.approbed_by }`) : of(null),
+    const { id } = this.activatedRoute.snapshot.params;
 
-            ems: chemical.ems.approval ?
-              this.dataSrv.get_item<User>(`users/${ chemical.ems.approbed_by }`) : of(null),
+    this.chemical$ = forkJoin({
+      chemical: this.dataSrv.get_item<Chemical>(`chemicals/${ id }`),
+      areas: this.dataSrv.get_items<Area>(`chemicals/areas/${ id }`)
+    }).pipe(
+      map(({ chemical, areas }) => {
+        chemical.areas = areas;
+        return chemical;
+      })
+    );
 
-            ohsms: chemical.ohsms.approval ?
-              this.dataSrv.get_item<User>(`users/${ chemical.ohsms.approbed_by }`) : of(null),
-
-            updatedBy: this.dataSrv.get_item<User>(`users/${ chemical.last_update_by._id }`),
-
-          });
-        })
-      ).subscribe(({ fsms, ems, ohsms, updatedBy, areas }) => {
-
-        this.areas =  areas.map(area => area.area)
-
-        if (fsms) {
-          this.chemical.fsms.approbed_by = `${ fsms.firstname } ${ fsms.lastname }`;
-        }
-        if (ems) {
-          this.chemical.ems.approbed_by = `${ ems.firstname } ${ ems.lastname }`;
-        }
-        if (ohsms) {
-          this.chemical.ohsms.approbed_by = `${ ohsms.firstname } ${ ohsms.lastname }`;
-        }
-        this.chemical.last_update_by.full_user_name = `${ updatedBy.firstname } ${ updatedBy.lastname }`;
-
-        
-
-      });
   };
 
   edit() {

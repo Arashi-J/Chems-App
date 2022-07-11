@@ -30,6 +30,7 @@ export class TableComponent<T> implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.displayedColumns = this.columns.map(c => c.columnDef);
+    this.dataSource = new NestedMatTableDataSource(this.data);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
