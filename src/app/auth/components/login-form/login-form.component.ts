@@ -23,8 +23,7 @@ export class LoginFormComponent {
     private auth: AuthService,
     private router: Router,
     private fb: NonNullableFormBuilder,
-    private snackBar: MatSnackBar
-  ) { }
+    private snackBar: MatSnackBar) { }
 
   login() {
     const { username, password } = this.loginForm.value;

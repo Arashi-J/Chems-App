@@ -1,0 +1,12 @@
+<p class="text-center text-3xl font-bold text-primary-500 mt-5">Crear Sustancia Química</p>
+
+<form autocomplete="off" [formGroup]="chemicalForm" (ngSubmit)="submit()"
+      class="">
+
+    <mat-form-field appearance="standard" class="">
+        <mat-label>Nombre de la sustancia química</mat-label>
+        <input matInput type="text" formControlName="chemical">
+        <mat-error>Ingrese un valor</mat-error>
+    </mat-form-field>
+
+</form>

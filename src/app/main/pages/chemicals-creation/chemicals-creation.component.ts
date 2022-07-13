@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-chemicals-creation',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChemicalsCreationComponent implements OnInit {
 
-  constructor() { }
+  chemicalForm: FormGroup = this.fb.group({
+    chemical: this.fb.control('', [Validators.required]),
+  });
+
+  constructor(
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
+  submit(){
+    
+  }
+
 }
+
+// {
+//   "chemical": "string",
+//   "hazards": [],
+//   "providers": [],
+//   "manufacturers": [],
+//   "p_phrases": [],
+//   "h_phrases": [],
+//   "ppes": [],
+//   "sds": []
+// }

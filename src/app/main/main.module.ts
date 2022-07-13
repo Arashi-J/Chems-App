@@ -21,6 +21,7 @@ import { ChemicalsListComponent } from './pages/chemicals-list/chemicals-list.co
 import { UsersCreationComponent } from './pages/users-creation/users-creation.component';
 import { UsersDetailsComponent } from './pages/users-details/users-details.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { UsersListComponent } from './pages/users-list/users-list.component';
     CommonModule,
     MainRoutingModule,
     MaterialModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
