@@ -1,0 +1,16 @@
+<mat-form-field appearance="fill">
+    <mat-label>{{label | titlecase}}</mat-label>
+    <mat-chip-list #chipList>
+        <mat-chip *ngFor="let value of control.value" (removed)="remove(value)">
+            {{value}}
+            <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+            </button>
+        </mat-chip>
+        <input placeholder="Add {{label | titlecase}}"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+</mat-form-field>

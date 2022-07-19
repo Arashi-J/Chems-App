@@ -1,0 +1,7 @@
+<ng-container [formGroup]="form">
+    <mat-form-field appearance="standard" class="">
+        <mat-label>{{label}}</mat-label>
+        <input matInput type="text" [formControlName]="control">
+        <mat-error>Ingrese un valor</mat-error>
+    </mat-form-field>
+</ng-container>

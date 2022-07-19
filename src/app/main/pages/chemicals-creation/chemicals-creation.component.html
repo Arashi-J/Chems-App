@@ -3,10 +3,19 @@
 <form autocomplete="off" [formGroup]="chemicalForm" (ngSubmit)="submit()"
       class="">
 
-    <mat-form-field appearance="standard" class="">
-        <mat-label>Nombre de la sustancia química</mat-label>
-        <input matInput type="text" formControlName="chemical">
-        <mat-error>Ingrese un valor</mat-error>
-    </mat-form-field>
+    <app-basic-input
+                     [label]="'Nombre de la Sustancia Química'"
+                     [control]="'chemical'">
+    </app-basic-input>
+
+    <br>
+
+    <app-chip-list-input
+                         [control]="providers"
+                         [label]="'providers'">
+    </app-chip-list-input>
+
 
 </form>
+
+<pre>{{chemicalForm.value | json}}</pre>

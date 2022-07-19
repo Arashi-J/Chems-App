@@ -6,6 +6,9 @@ import { TableComponent } from './table/table.component'
 import { MainRoutingModule } from '../main/main-routing.module';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { DatesPipe } from './pipes/dates.pipe';
+import { ChipListInputComponent } from './chip-list-input/chip-list-input.component';
+import { BasicInputComponent } from './basic-input/basic-input.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,14 +18,19 @@ import { DatesPipe } from './pipes/dates.pipe';
     NavbarComponent,
     TableComponent,
     SpinnerComponent,
-    DatesPipe
+    DatesPipe,
+    ChipListInputComponent,
+    BasicInputComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    MainRoutingModule
+    MainRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
+    BasicInputComponent,
+    ChipListInputComponent,
     NavbarComponent,
     TableComponent,
     SpinnerComponent,
