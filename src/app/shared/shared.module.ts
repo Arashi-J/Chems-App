@@ -9,6 +9,7 @@ import { DatesPipe } from './pipes/dates.pipe';
 import { ChipListInputComponent } from './chip-list-input/chip-list-input.component';
 import { BasicInputComponent } from './basic-input/basic-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SelectionListComponent } from './selection-list/selection-list.component';
 
 
 
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SpinnerComponent,
     DatesPipe,
     ChipListInputComponent,
-    BasicInputComponent
+    BasicInputComponent,
+    SelectionListComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ChipListInputComponent,
     NavbarComponent,
     TableComponent,
+    SelectionListComponent,
     SpinnerComponent,
     DatesPipe
   ]

@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { Phrase } from 'src/app/core/interfaces/interfaces';
+import { Observable } from 'rxjs';
+import { Phrase, Ppe } from 'src/app/core/interfaces/interfaces';
+import { DataFetchService } from 'src/app/core/services/data-fetch.service';
 
 @Component({
   selector: 'app-chemicals-creation',
   templateUrl: './chemicals-creation.component.html',
   styles: []
 })
-export class ChemicalsCreationComponent {
+export class ChemicalsCreationComponent implements OnInit {
+
+  ppes$!: Observable<Ppe[]>
 
   chemicalForm: FormGroup = this.fb.group({
     chemical: this.fb.control('', [Validators.required]),
@@ -23,7 +25,12 @@ export class ChemicalsCreationComponent {
   });
 
   constructor(
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private dataSrv: DataFetchService) { }
+
+  ngOnInit(): void {
+    this.ppes$ = this.dataSrv.get_items<Ppe>('chemicals/ppes')
+  }
 
 
 
@@ -31,15 +38,19 @@ export class ChemicalsCreationComponent {
 
   }
 
-  get chemical(){
-    return this.chemicalForm.get('chemical') as FormControl; 
+  get chemical(): FormControl {
+    return this.chemicalForm.get('chemical') as FormControl;
   }
 
   get providers(): FormControl {
     return this.chemicalForm.get('providers') as FormControl;
   }
 
-  
+  get ppes(): FormControl {
+    return this.chemicalForm.get('ppes') as FormControl;
+  }
+
+
 
 
 }

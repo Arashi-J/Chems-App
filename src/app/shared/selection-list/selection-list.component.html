@@ -1,0 +1,7 @@
+<ng-container [formGroup]="form">
+    <mat-selection-list [formControlName]="control">
+        <mat-list-option *ngFor="let item of items" [value]="item._id">
+            {{item[itemName]}}
+        </mat-list-option>
+    </mat-selection-list>
+</ng-container>
