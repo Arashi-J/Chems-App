@@ -10,6 +10,7 @@ import { ChipListInputComponent } from './chip-list-input/chip-list-input.compon
 import { BasicInputComponent } from './basic-input/basic-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SelectionListComponent } from './selection-list/selection-list.component';
+import { BaseUrlPipe } from './pipes/base-url.pipe';
 
 
 
@@ -22,7 +23,8 @@ import { SelectionListComponent } from './selection-list/selection-list.componen
     DatesPipe,
     ChipListInputComponent,
     BasicInputComponent,
-    SelectionListComponent
+    SelectionListComponent,
+    BaseUrlPipe
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { SelectionListComponent } from './selection-list/selection-list.componen
     TableComponent,
     SelectionListComponent,
     SpinnerComponent,
+    BaseUrlPipe,
     DatesPipe
   ]
 })

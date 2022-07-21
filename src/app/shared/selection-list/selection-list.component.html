@@ -1,7 +1,15 @@
 <ng-container [formGroup]="form">
     <mat-selection-list [formControlName]="control">
+        <mat-divider></mat-divider>
         <mat-list-option *ngFor="let item of items" [value]="item._id">
-            {{item[itemName]}}
+            <div class="flex">
+                <img src="{{ item[img] | baseUrl}}" class="w-8">
+                <span class="ml-3 self-center">
+                    {{item[itemName]}}
+                </span>
+
+            </div>
+            <mat-divider></mat-divider>
         </mat-list-option>
     </mat-selection-list>
 </ng-container>

@@ -5,7 +5,7 @@
 
     <app-basic-input
                      [label]="'Nombre de la Sustancia Química'"
-                     [control]="'chemical'">
+                     control="chemical">
     </app-basic-input>
 
     <br>
@@ -15,15 +15,63 @@
                          [label]="'providers'">
     </app-chip-list-input>
 
+    <app-selection-list
+                        [items]="(ppes$ | async) || []"
+                        itemName="ppe"
+                        control="ppes"
+                        img="img">
+    </app-selection-list>
 
-    
-    <!-- <mat-selection-list formControlName="ppes" *ngIf="(ppes$ | async) as ppes">
-        <mat-list-option *ngFor="let ppe of ppes" [value]="ppe._id">
-            {{ppe['ppe']}}
-        </mat-list-option>
-    </mat-selection-list> -->
+
+
+
+    <p>Frases H</p>
+    <form [formGroup]="newHPhrase">
+        <mat-form-field appearance="standard">
+            <mat-label>Código</mat-label>
+            <input matInput type="text" placeholder="Código" formControlName="code">
+            <mat-error>Ingrese un código</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Descripción</mat-label>
+            <input matInput type="text" placeholder="Descripción" formControlName="description">
+            <mat-error>Ingrese la descripción de la frase</mat-error>
+        </mat-form-field>
+        <button mat-button color="primary" type="button" (click)="addHPhrase()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+    </form>
+
+    <div formArrayName="h_phrases">
+        <ng-container *ngFor="let phraseFormGroup of h_phrases.controls; let i = index">
+            <form [formGroupName]="i">
+                <mat-form-field appearance="standard">
+                    <mat-label>Código</mat-label>
+                    <input matInput type="text" formControlName="code">
+                    <mat-error>Ingrese un código</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Descripción</mat-label>
+                    <input matInput type="text" formControlName="description">
+                    <mat-error>Ingrese la descripción de la frase</mat-error>
+                </mat-form-field>
+                <button mat-button color="warn" type="button" (click)="deleteHPhrase(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </form>
+        </ng-container>
+    </div>
 
 </form>
 
 
+<br>
+
 <pre>{{chemicalForm.value | json}}</pre>
+
+<br>
+
+<pre>{{newPPhrase.value | json}}</pre>
+<br>
+<pre>{{newHPhrase.value | json}}</pre>
+<pre>{{newHPhrase.valid | json}}</pre>

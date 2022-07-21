@@ -12,6 +12,7 @@ export class SelectionListComponent implements OnInit {
   @Input() items!: any[];
   @Input() itemName!: string;
   @Input() control!: string;
+  @Input() img!: string;
 
   form!: FormGroup;
 

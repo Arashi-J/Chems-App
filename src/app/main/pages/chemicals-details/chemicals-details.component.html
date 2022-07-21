@@ -18,7 +18,7 @@
                           class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center items-center p-0">
 
                     <img mat-card-image
-                         src="{{ baseUrl + hazard.pictogram }}"
+                         src="{{ hazard.pictogram | baseUrl }}"
                          alt="{{hazard.hazard}}"
                          class="mt-1">
                     <mat-card-title-group>
@@ -43,7 +43,7 @@
                 <mat-card *ngFor="let ppe of chemical.ppes"
                           class="w-24 flex-initial mx-2 mt-1 mb-3 grid grid-cols-1 justify-items-center">
                     <img mat-card-image
-                         src="{{ baseUrl + ppe.img }}"
+                         src="{{ ppe.img | baseUrl }}"
                          alt="{{ppe.ppe}}"
                          class="mt-1">
                     <mat-card-title class="text-center text-xs">{{ppe.ppe}}</mat-card-title>

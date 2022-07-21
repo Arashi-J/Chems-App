@@ -20,12 +20,10 @@ export class ChipListInputComponent  {
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
       this.control.value.push( value );
     }
 
-    // Clear the input value
     event.chipInput!.clear();
   }
 

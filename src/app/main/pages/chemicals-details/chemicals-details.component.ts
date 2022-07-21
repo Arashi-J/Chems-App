@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap, Observable, map, forkJoin } from 'rxjs';
+import { Observable, map, forkJoin } from 'rxjs';
 
 import { Area, Chemical, User } from 'src/app/core/interfaces/interfaces';
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chemicals-details',
@@ -15,7 +14,6 @@ export class ChemicalsDetailsComponent implements OnInit {
 
   chemical$!: Observable<Chemical>;
 
-  baseUrl: string = environment.baseUrl;
 
   managementSystems: string[] = ['SGIA', 'SGA', 'SGSST'];
 
