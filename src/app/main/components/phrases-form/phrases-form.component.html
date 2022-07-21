@@ -1,0 +1,19 @@
+<form [formGroup]="newPhrase">
+    <mat-form-field appearance="standard">
+        <mat-label>Código</mat-label>
+        <input matInput type="text" placeholder="Código" formControlName="code">
+        <mat-error>Ingrese un código</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+        <mat-label>Descripción</mat-label>
+        <input matInput type="text" placeholder="Descripción" formControlName="description">
+        <mat-error>Ingrese la descripción de la frase</mat-error>
+    </mat-form-field>
+    <button mat-button color="primary" type="button" (click)="addPhrase()">
+        <mat-icon>add_circle</mat-icon>
+    </button>
+</form>
+
+<div [formGroup]="fGroup">
+
+</div>

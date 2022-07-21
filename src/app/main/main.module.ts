@@ -22,6 +22,7 @@ import { UsersCreationComponent } from './pages/users-creation/users-creation.co
 import { UsersDetailsComponent } from './pages/users-details/users-details.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PhrasesFormComponent } from './components/phrases-form/phrases-form.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersCreationComponent,
     UsersDetailsComponent,
     UsersListComponent,
+    PhrasesFormComponent,
   ],
   imports: [
     CommonModule,
