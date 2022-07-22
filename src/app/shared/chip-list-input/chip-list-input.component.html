@@ -1,4 +1,4 @@
-<mat-form-field appearance="standard">
+<mat-form-field appearance="standard" class="w-full">
     <mat-label>{{label | titlecase}}</mat-label>
     <mat-chip-list #chipList>
         <mat-chip *ngFor="let value of control.value" (removed)="remove(value)">

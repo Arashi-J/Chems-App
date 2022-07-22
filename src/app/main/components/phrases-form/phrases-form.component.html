@@ -1,19 +1,19 @@
 <form [formGroup]="newPhrase">
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="standard" class="w-1/6 mr-4">
         <mat-label>Código</mat-label>
         <input
                matInput type="text" placeholder="Código" formControlName="code"
                (keyup.enter)="addPhrase()">
         <mat-error>Ingrese un código</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="standard" class="w-4/6">
         <mat-label>Descripción</mat-label>
         <input
                matInput type="text" placeholder="Descripción" formControlName="description"
                (keyup.enter)="addPhrase()">
         <mat-error>Ingrese la descripción de la frase</mat-error>
     </mat-form-field>
-    <button mat-button color="primary" type="button" (click)="addPhrase()">
+    <button mat-button color="primary" type="button" (click)="addPhrase()" class="ml-4">
         <mat-icon>add_circle</mat-icon>
     </button>
 </form>
@@ -22,18 +22,18 @@
     <div [formArrayName]="phrases">
         <ng-container *ngFor="let phraseFormGroup of phrasesArray.controls; let i = index">
             <form [formGroupName]="i">
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance="standard" class="w-1/6 mr-4">
                     <mat-label>Código</mat-label>
                     <input matInput type="text" formControlName="code">
                     <mat-error>Ingrese un código</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance="standard" class="w-4/6">
                     <mat-label>Descripción</mat-label>
                     <input matInput type="text"
                            formControlName="description">
                     <mat-error>Ingrese la descripción de la frase</mat-error>
                 </mat-form-field>
-                <button mat-button color="warn" type="button" (click)="deletePhrase(i)">
+                <button mat-button color="warn" type="button" (click)="deletePhrase(i)" class="ml-4">
                     <mat-icon>delete</mat-icon>
                 </button>
             </form>
