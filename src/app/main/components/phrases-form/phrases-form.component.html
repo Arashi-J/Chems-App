@@ -18,6 +18,8 @@
     </button>
 </form>
 
+<p class="font-semibold mt-2" *ngIf="phrasesArray.length > 0">Elementos añadidos:</p>
+
 <div [formGroup]="fGroup">
     <div [formArrayName]="phrases">
         <ng-container *ngFor="let phraseFormGroup of phrasesArray.controls; let i = index">

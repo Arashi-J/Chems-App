@@ -1,0 +1,32 @@
+<div class="flex justify-between">
+    <mat-form-field appearance="standard" class="w-11/12">
+        <mat-label>{{label}}</mat-label>
+        <input
+               matInput type="text" [placeholder]="label" [formControl]="inputField"
+               (keyup.enter)="addField()">
+        <mat-error>Ingrese un elemento</mat-error>
+    </mat-form-field>
+
+    <button mat-button color="primary" type="button" (click)="addField()" class="w-1/12 p-0">
+        <mat-icon>add_circle</mat-icon>
+    </button>
+</div>
+
+<p class="font-semibold mt-2" *ngIf="fieldArray.length > 0">Elementos añadidos:</p>
+
+<div [formGroup]="fGroup">
+    <div [formArrayName]="arrayName">
+        <ng-container *ngFor="let item of fieldArray.controls; let i = index">
+            <div class="flex justify-between">
+                <mat-form-field appearance="standard" class="w-11/12">
+                    <mat-label>{{label}}</mat-label>
+                    <input matInput type="text" [placeholder]="label" [formControlName]="i">
+                    <mat-error>Ingrese un elemento</mat-error>
+                </mat-form-field>
+                <button mat-button color="warn" type="button" (click)="deleteField(i)" class="w-1/12 p-0">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+</div>

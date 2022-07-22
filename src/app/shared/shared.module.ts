@@ -1,30 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MaterialModule } from 'src/app/material.module';
-import { TableComponent } from './table/table.component'
-import { MainRoutingModule } from '../main/main-routing.module';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { DatesPipe } from './pipes/dates.pipe';
-import { ChipListInputComponent } from './chip-list-input/chip-list-input.component';
-import { BasicInputComponent } from './basic-input/basic-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SelectionListComponent } from './selection-list/selection-list.component';
+
+import { MainRoutingModule } from '../main/main-routing.module';
+import { MaterialModule } from 'src/app/material.module';
+
 import { BaseUrlPipe } from './pipes/base-url.pipe';
+import { DatesPipe } from './pipes/dates.pipe';
+
+import { BasicInputComponent } from './basic-input/basic-input.component';
+import { ChipListInputComponent } from './chip-list-input/chip-list-input.component';
+import { InputArrayComponent } from './input-array/input-array.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SelectionListComponent } from './selection-list/selection-list.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { TableComponent } from './table/table.component'
 
 
 
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    TableComponent,
-    SpinnerComponent,
+    BaseUrlPipe,
     DatesPipe,
-    ChipListInputComponent,
     BasicInputComponent,
+    ChipListInputComponent,
+    InputArrayComponent,
+    NavbarComponent,
     SelectionListComponent,
-    BaseUrlPipe
+    SpinnerComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
@@ -33,14 +38,15 @@ import { BaseUrlPipe } from './pipes/base-url.pipe';
     ReactiveFormsModule
   ],
   exports: [
+    BaseUrlPipe,
+    DatesPipe,
     BasicInputComponent,
     ChipListInputComponent,
+    InputArrayComponent,
     NavbarComponent,
-    TableComponent,
     SelectionListComponent,
     SpinnerComponent,
-    BaseUrlPipe,
-    DatesPipe
+    TableComponent,
   ]
 })
 export class SharedModule { }

@@ -23,7 +23,7 @@ export class ChemicalsCreationComponent implements OnInit {
     p_phrases: this.fb.array([]),
     h_phrases: this.fb.array([]),
     ppes: [[]],
-    sds: [[]],
+    sds: this.fb.array([]),
   });
 
 
