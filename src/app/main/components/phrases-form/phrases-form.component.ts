@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-phrases-form',
@@ -7,9 +7,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: [
   ]
 })
-export class PhrasesFormComponent implements OnInit {
+export class PhrasesFormComponent {
 
   @Input() fGroup!: FormGroup;
+  @Input() phrases!: string;
+
+  get phrasesArray(){
+    return this.fGroup.get(this.phrases) as FormArray<FormGroup>
+  }
 
 
   newPhrase = this.fb.group({
@@ -19,10 +24,16 @@ export class PhrasesFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  addPhrase() {
+    if (this.newPhrase.invalid) { return; }
+    this.phrasesArray.push(this.fb.group({
+      code: [this.newPhrase.value.code, Validators.required],
+      description: [this.newPhrase.value.description, Validators.required]
+    }));
+    this.newPhrase.reset();
   }
 
-  addPhrase() {
-
+  deletePhrase(index: number){
+    this.phrasesArray.removeAt(index);
   }
 }

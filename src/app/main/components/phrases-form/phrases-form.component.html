@@ -1,12 +1,16 @@
 <form [formGroup]="newPhrase">
     <mat-form-field appearance="standard">
         <mat-label>Código</mat-label>
-        <input matInput type="text" placeholder="Código" formControlName="code">
+        <input
+               matInput type="text" placeholder="Código" formControlName="code"
+               (keyup.enter)="addPhrase()">
         <mat-error>Ingrese un código</mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard">
         <mat-label>Descripción</mat-label>
-        <input matInput type="text" placeholder="Descripción" formControlName="description">
+        <input
+               matInput type="text" placeholder="Descripción" formControlName="description"
+               (keyup.enter)="addPhrase()">
         <mat-error>Ingrese la descripción de la frase</mat-error>
     </mat-form-field>
     <button mat-button color="primary" type="button" (click)="addPhrase()">
@@ -15,5 +19,24 @@
 </form>
 
 <div [formGroup]="fGroup">
-
+    <div [formArrayName]="phrases">
+        <ng-container *ngFor="let phraseFormGroup of phrasesArray.controls; let i = index">
+            <form [formGroupName]="i">
+                <mat-form-field appearance="standard">
+                    <mat-label>Código</mat-label>
+                    <input matInput type="text" formControlName="code">
+                    <mat-error>Ingrese un código</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Descripción</mat-label>
+                    <input matInput type="text"
+                           formControlName="description">
+                    <mat-error>Ingrese la descripción de la frase</mat-error>
+                </mat-form-field>
+                <button mat-button color="warn" type="button" (click)="deletePhrase(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </form>
+        </ng-container>
+    </div>
 </div>
