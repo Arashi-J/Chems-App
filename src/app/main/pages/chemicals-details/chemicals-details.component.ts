@@ -33,8 +33,8 @@ export class ChemicalsDetailsComponent implements OnInit {
     const { id } = this.activatedRoute.snapshot.params;
 
     this.chemical$ = forkJoin({
-      chemical: this.dataSrv.get_item<Chemical>(`chemicals/${ id }`),
-      areas: this.dataSrv.get_items<Area>(`chemicals/areas/${ id }`)
+      chemical: this.dataSrv.getItem<Chemical>(`chemicals/${ id }`),
+      areas: this.dataSrv.getItems<Area>(`chemicals/areas/${ id }`)
     }).pipe(
       map(({ chemical, areas }) => {
         chemical.areas = areas;

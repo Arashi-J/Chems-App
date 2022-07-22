@@ -1,6 +1,9 @@
 <p class="text-center text-3xl font-bold text-primary-500 mt-5">Crear Sustancia Química</p>
 
-<form autocomplete="off" [formGroup]="chemicalForm" (ngSubmit)="submit()"
+<form autocomplete="off"
+      [formGroup]="chemicalForm"
+      (ngSubmit)="submit()"
+      (keydown.enter)="$event.preventDefault()"
       class="mx-20">
 
   <p class="text-xl font-bold text-primary-500 mt-4">
@@ -97,6 +100,17 @@
                    arrayName="sds">
   </app-input-array>
 
+  <div class="flex w-full justify-center">
+    <button mat-button color="primary" type="submit" class="mx-2 p-0 w-1/3" [disabled]="chemicalForm.invalid">
+      <mat-icon>save</mat-icon>
+      Guardar
+    </button>
+
+    <button mat-button color="warn" type="button" class="mx-2 p-0 w-1/3" (click)="clearForm()">
+      <mat-icon>clear_all</mat-icon>
+      Limpiar Formulario
+    </button>
+  </div>
 
 </form>
 

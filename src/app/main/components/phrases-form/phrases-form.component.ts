@@ -26,10 +26,12 @@ export class PhrasesFormComponent {
 
   addPhrase() {
     if (this.newPhrase.invalid) { return; }
+
     this.phrasesArray.push(this.fb.group({
       code: [this.newPhrase.value.code, Validators.required],
       description: [this.newPhrase.value.description, Validators.required]
     }));
+    
     this.newPhrase.reset();
   }
 

@@ -13,7 +13,7 @@ export class InputArrayComponent {
   @Input() arrayName!: string;
   @Input() label!: string;
 
-  inputField = this.fb.control('', Validators.required);
+  inputField = this.fb.control('', [Validators.required]);
 
   constructor(private fb: FormBuilder) { }
 

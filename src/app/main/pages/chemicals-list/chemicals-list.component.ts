@@ -52,6 +52,6 @@ export class ChemicalsListComponent implements OnInit {
     private data: DataFetchService) { }
 
   ngOnInit(): void {
-    this.chemicals$ = this.data.get_items<Chemical>('chemicals');
+    this.chemicals$ = this.data.getItems<Chemical>('chemicals');
   }
 }

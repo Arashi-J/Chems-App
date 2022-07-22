@@ -20,15 +20,21 @@ export class DataFetchService {
 
 
 
-  get_items<Type>(endpoint: string): Observable<Type[]> {
+  getItems<Type>(endpoint: string): Observable<Type[]> {
     const url = `${ this.baseUrl }/${ endpoint }/`;
     const headers = this.headers;
     return this.http.get<Type[]>(url, { headers });
   }
 
-  get_item<Type>(endpoint: string): Observable<Type> {
+  getItem<Type>(endpoint: string): Observable<Type> {
     const url = `${ this.baseUrl }/${ endpoint }/`;
     const headers = this.headers;
     return this.http.get<Type>(url, { headers });
+  }
+
+  postItem<Type>(endpoint: string, item: Type): Observable<Type> {
+    const url = `${ this.baseUrl }/${ endpoint }/`;
+    const headers = this.headers;
+    return this.http.post<Type>(url, item, { headers });
   }
 }
