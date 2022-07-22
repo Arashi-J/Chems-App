@@ -1,33 +1,95 @@
 <p class="text-center text-3xl font-bold text-primary-500 mt-5">Crear Sustancia Química</p>
 
 <form autocomplete="off" [formGroup]="chemicalForm" (ngSubmit)="submit()"
-      class="">
+      class="mx-20">
 
-    <app-basic-input
-                     [label]="'Nombre de la Sustancia Química'"
-                     control="chemical">
-    </app-basic-input>
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Sustancia Química
+  </p>
 
-    <br>
+  <p>Escriba el nombre de la sustancia química a añadir.</p>
 
-    <app-chip-list-input
-                         [control]="providers"
-                         [label]="'providers'">
-    </app-chip-list-input>
+  <app-basic-input
+                   [label]="'Nombre de la Sustancia Química'"
+                   control="chemical">
+  </app-basic-input>
 
-    <app-selection-list
-                        [items]="(ppes$ | async) || []"
-                        itemName="ppe"
-                        control="ppes"
-                        img="img">
-    </app-selection-list>
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Peligros
+  </p>
 
+  <p>Seleccione los peligros de la sustancia química que se muestran en la Ficha de Seguridad.</p>
 
-    <app-phrases-form
-                      [fGroup]="chemicalForm"
-                      phrases="p_phrases">
-    </app-phrases-form>
+  <app-selection-list
+                      [items]="(hazards$ | async) || []"
+                      itemName="hazard"
+                      control="hazards"
+                      img="pictogram">
+  </app-selection-list>
 
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Equipos de Protección Personal (EPP's)
+  </p>
+
+  <p>Seleccione los Equipos de Protección Personal (EPP) requeridos para la manipulación de la sustancia química, de
+    acuerdo a la Ficha de Seguridad.</p>
+
+  <app-selection-list
+                      [items]="(ppes$ | async) || []"
+                      itemName="ppe"
+                      control="ppes"
+                      img="img">
+  </app-selection-list>
+
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Proveedores
+  </p>
+
+  <p>Liste los proveedores de la sustancia química.</p>
+
+  <app-chip-list-input
+                       [control]="providers"
+                       label="Proveedores">
+  </app-chip-list-input>
+
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Fabricantes
+  </p>
+
+  <p>Liste los fabricantes de la sustancia química.</p>
+
+  <app-chip-list-input
+                       [control]="manufacturers"
+                       label="Fabricantes">
+  </app-chip-list-input>
+
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Frases de Peligros (Frases H)
+  </p>
+
+  <p>Liste las frases de peligros (Frases H) de la sustancia química, de acuerdo a su Ficha de Seguridad.</p>
+
+  <app-phrases-form
+                    [fGroup]="chemicalForm"
+                    phrases="h_phrases">
+  </app-phrases-form>
+
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Frases de Prudencia (Frases P)
+  </p>
+
+  <p>Liste las frases de prudencia (Frases P) de la sustancia química, de acuerdo a su Ficha de Seguridad.</p>
+
+  <app-phrases-form
+                    [fGroup]="chemicalForm"
+                    phrases="p_phrases">
+  </app-phrases-form>
+
+  <p class="text-xl font-bold text-primary-500 mt-4">
+    Fichas de Seguridad
+  </p>
+
+  <p>Liste los enlaces a las fichas de seguridad de la sustancia química.</p>
 
 </form>
 
@@ -35,4 +97,3 @@
 <br>
 
 <pre>{{chemicalForm.value | json}}</pre>
-

@@ -1,4 +1,4 @@
-<form [formGroup]="newPhrase">
+<form [formGroup]="newPhrase" class="flex justify-between">
     <mat-form-field appearance="standard" class="w-1/6 mr-4">
         <mat-label>Código</mat-label>
         <input
@@ -13,7 +13,7 @@
                (keyup.enter)="addPhrase()">
         <mat-error>Ingrese la descripción de la frase</mat-error>
     </mat-form-field>
-    <button mat-button color="primary" type="button" (click)="addPhrase()" class="ml-4">
+    <button mat-button color="primary" type="button" (click)="addPhrase()" class="w-1/12 p-0">
         <mat-icon>add_circle</mat-icon>
     </button>
 </form>
@@ -21,7 +21,7 @@
 <div [formGroup]="fGroup">
     <div [formArrayName]="phrases">
         <ng-container *ngFor="let phraseFormGroup of phrasesArray.controls; let i = index">
-            <form [formGroupName]="i">
+            <form [formGroupName]="i" class="flex justify-between">
                 <mat-form-field appearance="standard" class="w-1/6 mr-4">
                     <mat-label>Código</mat-label>
                     <input matInput type="text" formControlName="code">
@@ -33,7 +33,7 @@
                            formControlName="description">
                     <mat-error>Ingrese la descripción de la frase</mat-error>
                 </mat-form-field>
-                <button mat-button color="warn" type="button" (click)="deletePhrase(i)" class="ml-4">
+                <button mat-button color="warn" type="button" (click)="deletePhrase(i)" class="w-1/12 p-0">
                     <mat-icon>delete</mat-icon>
                 </button>
             </form>

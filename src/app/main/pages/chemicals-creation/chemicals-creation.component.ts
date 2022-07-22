@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 
 import { DataFetchService } from 'src/app/core/services/data-fetch.service';
-import { Ppe } from 'src/app/core/interfaces/interfaces';
+import { Hazard, Ppe } from 'src/app/core/interfaces/interfaces';
 
 @Component({
   selector: 'app-chemicals-creation',
@@ -13,12 +13,13 @@ import { Ppe } from 'src/app/core/interfaces/interfaces';
 export class ChemicalsCreationComponent implements OnInit {
 
   ppes$!: Observable<Ppe[]>;
+  hazards$!: Observable<Hazard[]>;
 
   chemicalForm: FormGroup = this.fb.group({
     chemical: ['', [Validators.required]],
     hazards: [[]],
     providers: [[]],
-    manufacturer: [[]],
+    manufacturers: [[]],
     p_phrases: this.fb.array([]),
     h_phrases: this.fb.array([]),
     ppes: [[]],
@@ -32,6 +33,8 @@ export class ChemicalsCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.ppes$ = this.dataSrv.get_items<Ppe>('chemicals/ppes');
+    this.hazards$ = this.dataSrv.get_items<Hazard>('chemicals/hazards');
+
   }
 
   submit() {
@@ -41,6 +44,10 @@ export class ChemicalsCreationComponent implements OnInit {
 
   get providers(): FormControl {
     return this.chemicalForm.get('providers') as FormControl;
+  }
+
+  get manufacturers(): FormControl {
+    return this.chemicalForm.get('manufacturers') as FormControl;
   }
 
 
